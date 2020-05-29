@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://dingdajian.github.io</id>
+    <id>https://horizain.github.io</id>
     <title>Gridea</title>
-    <updated>2020-05-29T14:57:01.244Z</updated>
+    <updated>2020-05-29T15:14:59.872Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://dingdajian.github.io"/>
-    <link rel="self" href="https://dingdajian.github.io/atom.xml"/>
+    <link rel="alternate" href="https://horizain.github.io"/>
+    <link rel="self" href="https://horizain.github.io/atom.xml"/>
     <subtitle>点 • 滴</subtitle>
-    <logo>https://dingdajian.github.io/images/avatar.png</logo>
-    <icon>https://dingdajian.github.io/favicon.ico</icon>
+    <logo>https://horizain.github.io/images/avatar.png</logo>
+    <icon>https://horizain.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
     <entry>
+        <title type="html"><![CDATA[如何“调教”一个好用的Chrome浏览器]]></title>
+        <id>https://horizain.github.io/post/ru-he-diao-jiao-yi-ge-hao-yong-de-chrome-liu-lan-qi/</id>
+        <link href="https://horizain.github.io/post/ru-he-diao-jiao-yi-ge-hao-yong-de-chrome-liu-lan-qi/">
+        </link>
+        <updated>2020-05-29T15:05:22.000Z</updated>
+        <content type="html"><![CDATA[<p>、、</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://dingdajian.github.io/post/hello-gridea/</id>
-        <link href="https://dingdajian.github.io/post/hello-gridea/">
+        <id>https://horizain.github.io/post/hello-gridea/</id>
+        <link href="https://horizain.github.io/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
