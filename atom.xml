@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2020-05-30T14:35:11.324Z</updated>
+    <updated>2020-05-30T14:48:06.657Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -16,7 +16,10 @@
         <link href="https://horizain.github.io/post/ru-he-diao-jiao-yi-ge-hao-yong-de-chrome-liu-lan-qi/">
         </link>
         <updated>2020-05-29T15:05:22.000Z</updated>
+        <summary type="html"><![CDATA[<p>原生的Chrome浏览器下了又删，删了又下，最后还是删了。原因很简单，因为它很好用，它又不是很好用。</p>
+]]></summary>
         <content type="html"><![CDATA[<p>原生的Chrome浏览器下了又删，删了又下，最后还是删了。原因很简单，因为它很好用，它又不是很好用。</p>
+<!-- more -->
 <p>好用是它打开网页的速度真的很快，但是对于我来说，它用起来又真的有点别扭。历史记录要单独开一个标签页，下载管理也要单独开一个标签页，而且下载过程中的进度指示会一直挂在浏览器的最下端，蓝瘦人。</p>
 <p>后来接触了一个国内团队基于Chromium定制的浏览器——百分浏览器。它真的非常好用，而且使用Google账号进行同步。我上面对Chrome浏览器的一切“控诉”也都是用惯了它才产生的。我有在Ubuntu下使用Chrome浏览器的需求，但是因为百分浏览器自身整合了许多浏览器扩展的功能，所以如果在Ubuntu下Chrome上安装一些特殊扩展的话，在Windows平台下的百分浏览器又会同步这些重复功能的扩展，其实也没什么，但我就是感觉蓝瘦人。</p>
 <p>那么干脆全部换成Chrome浏览器不就好了吗？嗯~ o(<strong>￣▽￣</strong>)o，Good idea！</p>
