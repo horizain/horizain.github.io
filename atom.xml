@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2020-05-30T14:15:55.875Z</updated>
+    <updated>2020-05-30T14:25:57.177Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -22,33 +22,42 @@
 <p>那么干脆全部换成Chrome浏览器不就好了吗？嗯~ o(<strong>￣▽￣</strong>)o，Good idea！</p>
 <p>这篇文章的目的是记录一些可以让原生的Chrome浏览器变得更符合我个人使用习惯的浏览器，嘿嘿，变成我的形状。</p>
 <ol>
-<li><a href="https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86/nfmgapnodlagabglffakjglkalonidld">下载管理</a></li>
+<li>
+<p><a href="https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86/nfmgapnodlagabglffakjglkalonidld">下载管理</a><br>
+<img src="https://horizain.github.io/post-images/1590848447176.png" alt="" loading="lazy"><br>
+接管浏览器自带的下载页面，既方便管理下载文件，也可以随时查看下载进度，而且风格简洁，提高了使用效率。</p>
+</li>
+<li>
+<p><a href="https://chrome.google.com/webstore/detail/undo-closed-tabs-button/ieehkmoiljghfkejgahoheemdjpdinml">Undo Closed Tabs Button</a><br>
+<img src="https://horizain.github.io/post-images/1590848507074.png" alt="" loading="lazy"><br>
+查看刚刚关闭的标签页，比起历史记录的页面，好用到不知道哪里去了，当然这个功能也是百分浏览器自带的一个功能。</p>
+</li>
+<li>
+<p><a href="https://chrome.google.com/webstore/detail/reading-list/lloccabjgblebdmncjndmiibianflabo">阅读列表</a><br>
+<img src="https://horizain.github.io/post-images/1590848538492.png" alt="" loading="lazy"><br>
+这个扩展非常好用，真的很好用。它可以暂时保存一些标签页，相当于一个临时的收藏夹。有时候一些网页有临时使用的需求，但是又没有放入收藏夹的必要，这个扩展就非常Nice了。放入阅读列表，看完后再叉掉，整个操作体验比使用收藏夹强很多。</p>
+</li>
+<li>
+<p><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm">uBlock Origin</a><br>
+<img src="https://horizain.github.io/post-images/1590848597768.png" alt="" loading="lazy"><br>
+广告拦截软件，简介好用，内存占用也不高。</p>
+</li>
+<li>
+<p><a href="https://chrome.google.com/webstore/detail/jlgkpaicikihijadgifklkbpdajbkhjo">crxMouse Chrome™ 手势</a><br>
+<img src="https://horizain.github.io/post-images/1590848657762.png" alt="" loading="lazy"><br>
+手势软件，可以使用右键画出快捷操作，还可以使用拖放功能，快速打开网页、图片等。</p>
+</li>
+<li>
+<p><a href="https://chrome.google.com/webstore/detail/%E6%B2%99%E6%8B%89%E6%9F%A5%E8%AF%8D-%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/cdonnmffkdaoajfknoeeecmchibpmkmg">沙拉查词</a><br>
+<img src="https://horizain.github.io/post-images/1590848696911.png" alt="" loading="lazy"><br>
+划词翻译扩展，集成了多个翻译网站的接口，可以一次给出不同的结果，查单词、听读音、看翻译等场景使用非常方便。</p>
+</li>
+<li>
+<p><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a><br>
+<img src="https://horizain.github.io/post-images/1590848603207.png" alt="" loading="lazy"><br>
+大名鼎鼎的油猴插件，可以安装脚本增强网页功能，实现针对性的去除广告，页面重排，功能增强等。</p>
+</li>
 </ol>
-<p>接管浏览器自带的下载页面，既方便管理下载文件，也可以随时查看下载进度，而且风格简洁，提高了使用效率。</p>
-<ol start="2">
-<li><a href="https://chrome.google.com/webstore/detail/undo-closed-tabs-button/ieehkmoiljghfkejgahoheemdjpdinml">Undo Closed Tabs Button</a></li>
-</ol>
-<p>查看刚刚关闭的标签页，比起历史记录的页面，好用到不知道哪里去了，当然这个功能也是百分浏览器自带的一个功能。</p>
-<ol start="3">
-<li><a href="https://chrome.google.com/webstore/detail/reading-list/lloccabjgblebdmncjndmiibianflabo">阅读列表</a></li>
-</ol>
-<p>这个扩展非常好用，真的很好用。它可以暂时保存一些标签页，相当于一个临时的收藏夹。有时候一些网页有临时使用的需求，但是又没有放入收藏夹的必要，这个扩展就非常Nice了。放入阅读列表，看完后再叉掉，整个操作体验比使用收藏夹强很多。</p>
-<ol start="3">
-<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm">uBlock Origin</a></li>
-</ol>
-<p>广告拦截软件，简介好用，内存占用也不高。</p>
-<ol start="4">
-<li><a href="https://chrome.google.com/webstore/detail/jlgkpaicikihijadgifklkbpdajbkhjo">crxMouse Chrome™ 手势</a></li>
-</ol>
-<p>手势软件，可以使用右键画出快捷操作，还可以使用拖放功能，快速打开网页、图片等。</p>
-<ol start="5">
-<li><a href="https://chrome.google.com/webstore/detail/%E6%B2%99%E6%8B%89%E6%9F%A5%E8%AF%8D-%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/cdonnmffkdaoajfknoeeecmchibpmkmg">沙拉查词</a></li>
-</ol>
-<p>划词翻译扩展，集成了多个翻译网站的接口，可以一次给出不同的结果，查单词、听读音、看翻译等场景使用非常方便。</p>
-<ol start="6">
-<li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a></li>
-</ol>
-<p>大名鼎鼎的油猴插件，可以安装脚本增强网页功能，实现针对性的去除广告，页面重排，功能增强等。</p>
 ]]></content>
     </entry>
     <entry>
