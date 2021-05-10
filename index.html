@@ -7,7 +7,7 @@
 <title>
     Horizain
 </title>
-<link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1620442024389">
+<link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1620645216061">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://horizain.github.io">
-                <img class="avatar" src="https://horizain.github.io/images/avatar.png?v=1620442024389" alt="">
+                <img class="avatar" src="https://horizain.github.io/images/avatar.png?v=1620645216061" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,6 +99,64 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://horizain.github.io/post/YOzVfWo7-/">
+                        Python笔记本——openpyxl操作excel表格
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-05-10</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>openpyxl是一个创建、修改excel文件的模块，保存的文件的扩展名一般为<code>.xlsx</code></p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://horizain.github.io/post/YOzVfWo7-/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://horizain.github.io/post/bbkKceax1/">
+                        Python笔记本——shutil文件操作
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2021-05-07</time>
+                    
+                        <a href="https://horizain.github.io/tag/ZIqcS_yX5/" class="post-tag i-tag
+                            i-tag-other_2">
+            #Python
+        </a>
+                        
+                        <a href="https://horizain.github.io/tag/yJpz2QRarh/" class="post-tag i-tag
+                            i-tag-error">
+            #文件管理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>我主要是使用这个模块复制文件和文件夹</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://horizain.github.io/post/bbkKceax1/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://horizain.github.io/post/DWvXQWaZE/">
                         Python笔记本——pathlib使用简述
                     </a>
@@ -107,12 +165,12 @@
                     <time class="post-time">2021-05-07</time>
                     
                         <a href="https://horizain.github.io/tag/ZIqcS_yX5/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
             #Python
         </a>
                         
                         <a href="https://horizain.github.io/tag/yJpz2QRarh/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_2">
             #文件管理
         </a>
                         
@@ -124,144 +182,11 @@
                         
                             <div class="post-content">
                                 
-                                        <div class="post-content-content">
-                                            pathlib 是一个面向对象的文件系统路径模块。下面是我是用较多的函数和使用方法：
-快速食用方法
-导入模块
-from pathlib import Path
-新建一个Path对象
-dstbinPath = Path(inputPath)
-获取文件所在的相对路径的上级路径
-rootPath = Path.cwd().parent
-parent属性可以链式调用，比如
-Path.cwd().parent.parent.parent.parent
-Path对象的parents属性可以拿到各级目录列表(索引值越大越接近root)
-拼接路径
-logPath = Path.joinpath(rootPath, &#39;errorlog&#39;)
-遍历文件夹文件
-for sub in logPath.iterdir():
-    if sub.is_file():
-        # 获取文件的绝对路径
-        srcPath = sub.resolve()
+                                    <div class="post-content-abstract">
+                                        <p>pathlib 是一个面向对象的文件系统路径模块。下面是我是用较多的函数和使用方法：</p>
 
-判断文件后缀扩展名
-if logfile.suffix == &#39;.json&#39;:
-删除文件
-file.unlink()
-对应的 os 模块的工具
-
-
-
-os 和 os.path
-pathlib
-
-
-
-
-os.path.abspath()
-Path.resolve()
-
-
-os.chmod()
-Path.chmod()
-
-
-os.mkdir()
-Path.mkdir()
-
-
-os.makedirs()
-Path.mkdir()
-
-
-os.rename()
-Path.rename()
-
-
-os.replace()
-Path.replace()
-
-
-os.rmdir()
-Path.rmdir()
-
-
-os.remove(), os.unlink()
-Path.unlink()
-
-
-os.getcwd()
-Path.cwd()
-
-
-os.path.exists()
-Path.exists()
-
-
-os.path.expanduser()
-Path.expanduser() 和 Path.home()
-
-
-os.listdir()
-Path.iterdir()
-
-
-os.path.isdir()
-Path.is_dir()
-
-
-os.path.isfile()
-Path.is_file()
-
-
-os.path.islink()
-Path.is_symlink()
-
-
-os.link()
-Path.link_to()
-
-
-os.symlink()
-Path.symlink_to()
-
-
-os.readlink()
-Path.readlink()
-
-
-os.stat()
-Path.stat(), Path.owner(), Path.group()
-
-
-os.path.isabs()
-PurePath.is_absolute()
-
-
-os.path.join()
-PurePath.joinpath()
-
-
-os.path.basename()
-PurePath.name
-
-
-os.path.dirname()
-PurePath.parent
-
-
-os.path.samefile()
-Path.samefile()
-
-
-os.path.splitext()
-PurePath.suffix
-
-
-
-
-                                        </div>
-                                        
+                                    </div>
+                                    
                                             <a class="btn btn-text" href="https://horizain.github.io/post/DWvXQWaZE/">Read More ~</a>
                             </div>
                 </div>
@@ -305,7 +230,7 @@ PurePath.suffix
                     <time class="post-time">2018-12-12</time>
                     
                         <a href="https://horizain.github.io/tag/-Z6QDayHK/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
             #Gridea
         </a>
                         
@@ -339,7 +264,7 @@ PurePath.suffix
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://horizain.github.io/images/avatar.png?v=1620442024389)">
+        <div class="id_card-avatar" style="background-image: url(https://horizain.github.io/images/avatar.png?v=1620645216061)">
         </div>
         <h1 class="id_card-title">
             Horizain
