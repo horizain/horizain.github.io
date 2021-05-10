@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2021-05-10T11:13:38.256Z</updated>
+    <updated>2021-05-10T11:18:25.780Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -22,7 +22,8 @@
 <!-- more -->
 <h2 id="食用方法">食用方法</h2>
 <h4 id="导入模块">导入模块</h4>
-<pre><code class="language-python">from openpyxl import Workbook, load_workbook
+<pre><code class="language-python">
+from openpyxl import Workbook, load_workbook
 
 # Workbook：创建新文件
 
@@ -35,7 +36,8 @@ from openpyxl.style import Alignment, Font
 # Font：设置字体格式
 </code></pre>
 <h4 id="打开文件">打开文件</h4>
-<pre><code class="language-python">if path.exists():
+<pre><code class="language-python">
+if path.exists():
     wb = load_workbook(path)
 else:
     wb = Workbook()
@@ -48,7 +50,8 @@ else:
 </code></pre>
 <h4 id="读写单元格">读写单元格</h4>
 <p>写入单元格有两种方式：</p>
-<pre><code class="language-python"># 第一种
+<pre><code class="language-python">
+# 第一种
 # 可以构建读写用字符串，形成类似'A1'这种形式的字符
 temp = '%s%s' % (column, row)
 ws[temp] = text
@@ -57,14 +60,16 @@ ws[temp] = text
 ws.cell(row=1, column=1, value=text)
 </code></pre>
 <p>读取单元格同样有两种方法：</p>
-<pre><code class="language-python"># 第一种
+<pre><code class="language-python">
+# 第一种
 ws['A1'].value
 
 # 第二种
 ws.cell(row=1, column=1).value
 </code></pre>
 <h4 id="合并单元格并居中">合并单元格并居中</h4>
-<pre><code class="language-python"># 构造例如 `A1:B2` 这种形式的字符
+<pre><code class="language-python">
+# 构造例如 `A1:B2` 这种形式的字符
 ws.merge_cells('%s%s:%s%s' % (start_column, start_row, end_column, end_row))
 
 # 单元格合并后标号等于合并前左上角第一个单元格的标号
@@ -76,7 +81,8 @@ ws[&quot;%s%s&quot; % (start_column, start_row)].alignment = Alignment(vertical=
 <p>注：合并单元格的内容为合并前左上角单元格的内容，所以合并并写入的操作顺序为“先写入左上角，再合并”</p>
 </blockquote>
 <h4 id="保存文件">保存文件</h4>
-<pre><code class="language-python">ws.save(abspath)
+<pre><code class="language-python">
+ws.save(abspath)
 # abspath是以.xlsx扩展名结尾的绝对地址，（相对地址也可以），推荐使用pathlib构造
 # 我是这样用的
 docname = 'name.xlsx'
