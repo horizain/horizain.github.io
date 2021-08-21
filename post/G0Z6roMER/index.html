@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Python笔记本——shutil文件操作 | Horizain
+    Python笔记本——获取文件大小 | Horizain
 </title>
 <link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629558014190">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,39 +106,29 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Python笔记本——shutil文件操作
+                            Python笔记本——获取文件大小
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2021-05-07</time>
+                            <time class="post-time">2021-05-11</time>
                             
                                 <a href="https://horizain.github.io/tag/ZIqcS_yX5/" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_1">
                             #Python
                         </a>
                                 
                                 <a href="https://horizain.github.io/tag/yJpz2QRarh/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-">
                             #文件管理
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <p>我主要是使用这个模块复制文件和文件夹</p>
-<!-- more -->
-<h2 id="用法"><strong>用法</strong></h2>
-<pre><code># 判断文件/文件夹并复制
-for binPath in seconddir.iterdir():
-    if binPath.is_file():
-        srcPath = binPath.resolve()
-        # 复制文件
-        shutil.copy(srcPath, inputPath)
-    else:
-        # 复制文件夹
-        shutil.copytree(binPath.resolve(), Path.joinpath(inputPath,binPath.name), dirs_exist_ok=True)
+                                    <pre><code class="language-python">
+import os
 
-# dirs_exist_os=True：忽略已有文件夹
-# Path.joinpath(inputPath,binPath.name)：合成文件夹的目的地址
+print(os.path.getsize(filepath))
+# 输出单位为字节
 </code></pre>
 
                                 </div>
@@ -147,9 +137,9 @@ for binPath in seconddir.iterdir():
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://horizain.github.io/post/DWvXQWaZE/">
+                            <a href="https://horizain.github.io/post/YOzVfWo7-/">
                                 <h3 class="post-title">
-                                    Python笔记本——pathlib使用简述
+                                    Python笔记本——openpyxl操作excel表格
                                 </h3>
                             </a>
                         </div>
@@ -162,46 +152,35 @@ for binPath in seconddir.iterdir():
                 <!-- right -->
                 <div id="sidebar" class="main-container-right">
                     
-                        <!-- toc -->
-                        
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%94%A8%E6%B3%95"><strong>用法</strong></a></li>
-</ul>
-</li>
-</ul>
+                                <!-- id-card -->
+                                
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://horizain.github.io/images/avatar.png?v=1629558014190)">
+        </div>
+        <h1 class="id_card-title">
+            Horizain
+        </h1>
+        <h2 class="id_card-description">
+            Rain on the horizon
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/horizain" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
         </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
     </div>
     
-                            
+                                    
 
                 </div>
 

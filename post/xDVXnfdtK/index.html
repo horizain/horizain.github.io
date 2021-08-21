@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Python笔记本——shutil文件操作 | Horizain
+    第一节补充笔记：编码过程中遇到的问题 | Horizain
 </title>
 <link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629558014190">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,40 +106,38 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Python笔记本——shutil文件操作
+                            第一节补充笔记：编码过程中遇到的问题
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2021-05-07</time>
+                            <time class="post-time">2021-08-21</time>
                             
-                                <a href="https://horizain.github.io/tag/ZIqcS_yX5/" class="post-tag i-tag
-                            i-tag-other_2">
-                            #Python
-                        </a>
-                                
-                                <a href="https://horizain.github.io/tag/yJpz2QRarh/" class="post-tag i-tag
-                            i-tag-other_3">
-                            #文件管理
-                        </a>
-                                
                         </div>
                         
                                 <div class="post-content">
-                                    <p>我主要是使用这个模块复制文件和文件夹</p>
-<!-- more -->
-<h2 id="用法"><strong>用法</strong></h2>
-<pre><code># 判断文件/文件夹并复制
-for binPath in seconddir.iterdir():
-    if binPath.is_file():
-        srcPath = binPath.resolve()
-        # 复制文件
-        shutil.copy(srcPath, inputPath)
-    else:
-        # 复制文件夹
-        shutil.copytree(binPath.resolve(), Path.joinpath(inputPath,binPath.name), dirs_exist_ok=True)
-
-# dirs_exist_os=True：忽略已有文件夹
-# Path.joinpath(inputPath,binPath.name)：合成文件夹的目的地址
-</code></pre>
+                                    <h3 id="一-文件管理">一、文件管理</h3>
+<p>我现在的项目文件管理目录如下：</p>
+<p><img src="https://horizain.github.io/post-images/1629557450149.png" alt="" loading="lazy">![image-20210819221054992]</p>
+<p>在home目录下新建catkin_ws作为ROS系统的编译总目录，然后在下面新建demo0x_ws文件夹作为子项目的编译目录，我个人认为这样的安排是比较合理的，编码时只需要在对应的子项目下在终端中输入<code>code .</code>打开VSCode即可。</p>
+<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629557475603.png" alt="" loading="lazy"></figure>
+<h3 id="二-vscode的插件使用">二、vscode的插件使用</h3>
+<p>当前在vscode中安装的插件有：</p>
+<figure data-type="image" tabindex="2"><img src="https://horizain.github.io/post-images/1629557482468.png" alt="" loading="lazy"></figure>
+<p>亲测，安装完插件后，通过ROS插件新建Package，可以直接使用快捷键<code>Ctrl+Shift+B</code>调用编译</p>
+<figure data-type="image" tabindex="3"><img src="https://horizain.github.io/post-images/1629557493528.png" alt="" loading="lazy"></figure>
+<p>当然这个快捷编译是有前提的，介绍一下在catkin_ws总目录下新建一个子项目的流程：</p>
+<p>1、在catkin_ws下新建一个子文件夹，<code>mkdir -p demo0x_ws/src</code></p>
+<p>2、进入demo0x_ws目录下</p>
+<p>3、在终端执行<code>catkin_make</code></p>
+<p>4、在vscode中，右键src目录新建一个package，先输入package的名称，再输入需要的依赖软件包名，需要注意的是，package的名称要求是小写字母、下划线、数字的组合。</p>
+<p>然后使用快捷键调用编译，你就会发现，出现了catkin_make的选项。</p>
+<h3 id="三-在vscode中使用搜狗输入法的问题">三、在vscode中使用搜狗输入法的问题</h3>
+<p>问题：在vscode中不能使用搜狗输入法，在系统其他环境中则正常</p>
+<p>解决方法：从 Ubuntu Software Apps 安装的是 snap 软件包，也就是非 vscode 官方编译发布的安装包，有这个输入法bug，在VSCode 官网下载重新安装即可。</p>
+<h3 id="四-原教程212中代码的修改">四、原教程2.1.2中代码的修改</h3>
+<p>教程中的代码有一点小小的问题，发布的数字会比接收到的小1，经过下面的修改，即可解决。</p>
+<figure data-type="image" tabindex="4"><img src="https://horizain.github.io/post-images/1629557519894.png" alt="" loading="lazy"></figure>
+<p>把上面的代码修改为下面的，其实就是把显示数据的代码<code>rospy.loginfo</code>的顺序修改一下</p>
+<figure data-type="image" tabindex="5"><img src="https://horizain.github.io/post-images/1629557524882.png" alt="" loading="lazy"></figure>
 
                                 </div>
                     </article>
@@ -147,9 +145,9 @@ for binPath in seconddir.iterdir():
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://horizain.github.io/post/DWvXQWaZE/">
+                            <a href="https://horizain.github.io/post/9BG5hmaD4/">
                                 <h3 class="post-title">
-                                    Python笔记本——pathlib使用简述
+                                    《ROS学习笔记》——第一节：ROS的安装与调试
                                 </h3>
                             </a>
                         </div>
@@ -170,7 +168,14 @@ for binPath in seconddir.iterdir():
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E7%94%A8%E6%B3%95"><strong>用法</strong></a></li>
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86">一、文件管理</a></li>
+<li><a href="#%E4%BA%8C-vscode%E7%9A%84%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8">二、vscode的插件使用</a></li>
+<li><a href="#%E4%B8%89-%E5%9C%A8vscode%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98">三、在vscode中使用搜狗输入法的问题</a></li>
+<li><a href="#%E5%9B%9B-%E5%8E%9F%E6%95%99%E7%A8%8B212%E4%B8%AD%E4%BB%A3%E7%A0%81%E7%9A%84%E4%BF%AE%E6%94%B9">四、原教程2.1.2中代码的修改</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

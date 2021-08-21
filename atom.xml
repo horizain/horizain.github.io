@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2021-05-10T11:18:25.780Z</updated>
+    <updated>2021-08-21T15:00:51.902Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -10,6 +10,93 @@
     <logo>https://horizain.github.io/images/avatar.png</logo>
     <icon>https://horizain.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Horizain</rights>
+    <entry>
+        <title type="html"><![CDATA[第一节补充笔记：编码过程中遇到的问题]]></title>
+        <id>https://horizain.github.io/post/xDVXnfdtK/</id>
+        <link href="https://horizain.github.io/post/xDVXnfdtK/">
+        </link>
+        <updated>2021-08-21T14:59:53.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="一-文件管理">一、文件管理</h3>
+<p>我现在的项目文件管理目录如下：</p>
+<p><img src="https://horizain.github.io/post-images/1629557450149.png" alt="" loading="lazy">![image-20210819221054992]</p>
+<p>在home目录下新建catkin_ws作为ROS系统的编译总目录，然后在下面新建demo0x_ws文件夹作为子项目的编译目录，我个人认为这样的安排是比较合理的，编码时只需要在对应的子项目下在终端中输入<code>code .</code>打开VSCode即可。</p>
+<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629557475603.png" alt="" loading="lazy"></figure>
+<h3 id="二-vscode的插件使用">二、vscode的插件使用</h3>
+<p>当前在vscode中安装的插件有：</p>
+<figure data-type="image" tabindex="2"><img src="https://horizain.github.io/post-images/1629557482468.png" alt="" loading="lazy"></figure>
+<p>亲测，安装完插件后，通过ROS插件新建Package，可以直接使用快捷键<code>Ctrl+Shift+B</code>调用编译</p>
+<figure data-type="image" tabindex="3"><img src="https://horizain.github.io/post-images/1629557493528.png" alt="" loading="lazy"></figure>
+<p>当然这个快捷编译是有前提的，介绍一下在catkin_ws总目录下新建一个子项目的流程：</p>
+<p>1、在catkin_ws下新建一个子文件夹，<code>mkdir -p demo0x_ws/src</code></p>
+<p>2、进入demo0x_ws目录下</p>
+<p>3、在终端执行<code>catkin_make</code></p>
+<p>4、在vscode中，右键src目录新建一个package，先输入package的名称，再输入需要的依赖软件包名，需要注意的是，package的名称要求是小写字母、下划线、数字的组合。</p>
+<p>然后使用快捷键调用编译，你就会发现，出现了catkin_make的选项。</p>
+<h3 id="三-在vscode中使用搜狗输入法的问题">三、在vscode中使用搜狗输入法的问题</h3>
+<p>问题：在vscode中不能使用搜狗输入法，在系统其他环境中则正常</p>
+<p>解决方法：从 Ubuntu Software Apps 安装的是 snap 软件包，也就是非 vscode 官方编译发布的安装包，有这个输入法bug，在VSCode 官网下载重新安装即可。</p>
+<h3 id="四-原教程212中代码的修改">四、原教程2.1.2中代码的修改</h3>
+<p>教程中的代码有一点小小的问题，发布的数字会比接收到的小1，经过下面的修改，即可解决。</p>
+<figure data-type="image" tabindex="4"><img src="https://horizain.github.io/post-images/1629557519894.png" alt="" loading="lazy"></figure>
+<p>把上面的代码修改为下面的，其实就是把显示数据的代码<code>rospy.loginfo</code>的顺序修改一下</p>
+<figure data-type="image" tabindex="5"><img src="https://horizain.github.io/post-images/1629557524882.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[《ROS学习笔记》——第一节：ROS的安装与调试]]></title>
+        <id>https://horizain.github.io/post/9BG5hmaD4/</id>
+        <link href="https://horizain.github.io/post/9BG5hmaD4/">
+        </link>
+        <updated>2021-08-21T14:54:10.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>我学习的文字文档和视频教程见下面两个链接，我个人认为这个教程写的还是很棒的。我写这个笔记作为我个人的学习与复习之用。</p>
+</blockquote>
+<p>文字教程：<a href="http://www.autolabor.com.cn/book/ROSTutorials/">Introduction · GitBook (autolabor.com.cn)</a></p>
+<p>视频教程：<a href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ?p=1">【奥特学园】ROS机器人入门课程《ROS理论与实践》零基础教程_哔哩哔哩_bilibili</a></p>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>我学习的文字文档和视频教程见下面两个链接，我个人认为这个教程写的还是很棒的。我写这个笔记作为我个人的学习与复习之用。</p>
+</blockquote>
+<p>文字教程：<a href="http://www.autolabor.com.cn/book/ROSTutorials/">Introduction · GitBook (autolabor.com.cn)</a></p>
+<p>视频教程：<a href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ?p=1">【奥特学园】ROS机器人入门课程《ROS理论与实践》零基础教程_哔哩哔哩_bilibili</a></p>
+<!-- more -->
+<h3 id="一-安装ros的实操记录">一、安装ROS的实操记录</h3>
+<p>ROS的系统版本是和Ubuntu系统版本高度统一的，这里我跟从教程，使用Ubuntu20.04，安装的ROS版本为noetic。</p>
+<p><strong>1、首先设置安装源，亲测国内清华大学的源可以用</strong></p>
+<p><code>sudo sh -c '. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/</code>lsb_release -cs<code>main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list'</code></p>
+<p><strong>2、设置Key</strong></p>
+<p><code>sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654</code></p>
+<p><strong>3、安装ros</strong></p>
+<p>添加完ros安装源和key之后，首先需要更新一下apt</p>
+<p><code>sudo apt update</code></p>
+<p>然后键入</p>
+<p><code>sudo apt install ros-noetic-desktop-full</code></p>
+<h3 id="二-配置环境变量">二、配置环境变量</h3>
+<p><code>echo &quot;source /opt/ros/noetic/setup.bash&quot; &gt;&gt; ~/.bashrc</code></p>
+<h3 id="三-卸载方法">三、卸载方法</h3>
+<p><code>sudo apt remove ros-noetic-*</code></p>
+<h3 id="四-测试ros">四、测试ROS</h3>
+<p>打开三个命令行，然后按顺序分别键入：</p>
+<p>1、<code>roscore</code></p>
+<p>2、<code>rosrun turtlesim turtlesim_node</code></p>
+<p>3、<code>rosrun turtlesim turtle_teleop_key</code></p>
+<p><strong>注意: 在 ROS 版本 noetic 中无需构建软件包的依赖关系，没有<code>rosdep</code>的相关安装与配置。</strong></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python笔记本——获取文件大小]]></title>
+        <id>https://horizain.github.io/post/G0Z6roMER/</id>
+        <link href="https://horizain.github.io/post/G0Z6roMER/">
+        </link>
+        <updated>2021-05-11T05:31:32.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-python">
+import os
+
+print(os.path.getsize(filepath))
+# 输出单位为字节
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python笔记本——openpyxl操作excel表格]]></title>
         <id>https://horizain.github.io/post/YOzVfWo7-/</id>

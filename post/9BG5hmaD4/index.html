@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Python笔记本——shutil文件操作 | Horizain
+    《ROS学习笔记》——第一节：ROS的安装与调试 | Horizain
 </title>
 <link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629558014190">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,40 +106,41 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Python笔记本——shutil文件操作
+                            《ROS学习笔记》——第一节：ROS的安装与调试
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2021-05-07</time>
+                            <time class="post-time">2021-08-21</time>
                             
-                                <a href="https://horizain.github.io/tag/ZIqcS_yX5/" class="post-tag i-tag
-                            i-tag-other_2">
-                            #Python
-                        </a>
-                                
-                                <a href="https://horizain.github.io/tag/yJpz2QRarh/" class="post-tag i-tag
-                            i-tag-other_3">
-                            #文件管理
-                        </a>
-                                
                         </div>
                         
                                 <div class="post-content">
-                                    <p>我主要是使用这个模块复制文件和文件夹</p>
+                                    <blockquote>
+<p>我学习的文字文档和视频教程见下面两个链接，我个人认为这个教程写的还是很棒的。我写这个笔记作为我个人的学习与复习之用。</p>
+</blockquote>
+<p>文字教程：<a href="http://www.autolabor.com.cn/book/ROSTutorials/">Introduction · GitBook (autolabor.com.cn)</a></p>
+<p>视频教程：<a href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ?p=1">【奥特学园】ROS机器人入门课程《ROS理论与实践》零基础教程_哔哩哔哩_bilibili</a></p>
 <!-- more -->
-<h2 id="用法"><strong>用法</strong></h2>
-<pre><code># 判断文件/文件夹并复制
-for binPath in seconddir.iterdir():
-    if binPath.is_file():
-        srcPath = binPath.resolve()
-        # 复制文件
-        shutil.copy(srcPath, inputPath)
-    else:
-        # 复制文件夹
-        shutil.copytree(binPath.resolve(), Path.joinpath(inputPath,binPath.name), dirs_exist_ok=True)
-
-# dirs_exist_os=True：忽略已有文件夹
-# Path.joinpath(inputPath,binPath.name)：合成文件夹的目的地址
-</code></pre>
+<h3 id="一-安装ros的实操记录">一、安装ROS的实操记录</h3>
+<p>ROS的系统版本是和Ubuntu系统版本高度统一的，这里我跟从教程，使用Ubuntu20.04，安装的ROS版本为noetic。</p>
+<p><strong>1、首先设置安装源，亲测国内清华大学的源可以用</strong></p>
+<p><code>sudo sh -c '. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/</code>lsb_release -cs<code>main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list'</code></p>
+<p><strong>2、设置Key</strong></p>
+<p><code>sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654</code></p>
+<p><strong>3、安装ros</strong></p>
+<p>添加完ros安装源和key之后，首先需要更新一下apt</p>
+<p><code>sudo apt update</code></p>
+<p>然后键入</p>
+<p><code>sudo apt install ros-noetic-desktop-full</code></p>
+<h3 id="二-配置环境变量">二、配置环境变量</h3>
+<p><code>echo &quot;source /opt/ros/noetic/setup.bash&quot; &gt;&gt; ~/.bashrc</code></p>
+<h3 id="三-卸载方法">三、卸载方法</h3>
+<p><code>sudo apt remove ros-noetic-*</code></p>
+<h3 id="四-测试ros">四、测试ROS</h3>
+<p>打开三个命令行，然后按顺序分别键入：</p>
+<p>1、<code>roscore</code></p>
+<p>2、<code>rosrun turtlesim turtlesim_node</code></p>
+<p>3、<code>rosrun turtlesim turtle_teleop_key</code></p>
+<p><strong>注意: 在 ROS 版本 noetic 中无需构建软件包的依赖关系，没有<code>rosdep</code>的相关安装与配置。</strong></p>
 
                                 </div>
                     </article>
@@ -147,9 +148,9 @@ for binPath in seconddir.iterdir():
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://horizain.github.io/post/DWvXQWaZE/">
+                            <a href="https://horizain.github.io/post/G0Z6roMER/">
                                 <h3 class="post-title">
-                                    Python笔记本——pathlib使用简述
+                                    Python笔记本——获取文件大小
                                 </h3>
                             </a>
                         </div>
@@ -170,7 +171,14 @@ for binPath in seconddir.iterdir():
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E7%94%A8%E6%B3%95"><strong>用法</strong></a></li>
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E5%AE%89%E8%A3%85ros%E7%9A%84%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95">一、安装ROS的实操记录</a></li>
+<li><a href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">二、配置环境变量</a></li>
+<li><a href="#%E4%B8%89-%E5%8D%B8%E8%BD%BD%E6%96%B9%E6%B3%95">三、卸载方法</a></li>
+<li><a href="#%E5%9B%9B-%E6%B5%8B%E8%AF%95ros">四、测试ROS</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
