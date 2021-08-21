@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2021-08-21T15:30:03.103Z</updated>
+    <updated>2021-08-21T15:32:36.299Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -12,10 +12,10 @@
     <rights>All rights reserved 2021, Horizain</rights>
     <entry>
         <title type="html"><![CDATA[第二节补充笔记：编码过程中库函数简介]]></title>
-        <id>https://horizain.github.io/post/_pP_eDKwO/</id>
-        <link href="https://horizain.github.io/post/_pP_eDKwO/">
+        <id>https://horizain.github.io/post/jaTAsGEvp/</id>
+        <link href="https://horizain.github.io/post/jaTAsGEvp/">
         </link>
-        <updated>2021-08-21T15:10:54.000Z</updated>
+        <updated>2021-08-21T15:32:13.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="c版本">C++版本</h3>
 <ol>
 <li><code>ros::init(argc, argv, &quot;node_name&quot;)</code>;</li>

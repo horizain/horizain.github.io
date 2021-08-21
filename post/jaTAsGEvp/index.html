@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    如何“调教”一个好用的Chrome浏览器 | Horizain
+    第二节补充笔记：编码过程中库函数简介 | Horizain
 </title>
 <link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629559954006">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,60 +106,57 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            如何“调教”一个好用的Chrome浏览器
+                            第二节补充笔记：编码过程中库函数简介
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2020-05-29</time>
+                            <time class="post-time">2021-08-21</time>
                             
+                                <a href="https://horizain.github.io/tag/ROS/" class="post-tag i-tag
+                            i-tag-warning">
+                            #ROS学习笔记
+                        </a>
+                                
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('https://horizain.github.io/post-images/ru-he-diao-jiao-yi-ge-hao-yong-de-chrome-liu-lan-qi.png')"></div>
-                            
                                 <div class="post-content">
-                                    <p>原生的Chrome浏览器下了又删，删了又下，最后还是删了。原因很简单，因为它很好用，它又不是很好用。<br>
-...</p>
-<!-- more -->
-<p>好用是它打开网页的速度真的很快，但是对于我来说，它用起来又真的有点别扭。历史记录要单独开一个标签页，下载管理也要单独开一个标签页，而且下载过程中的进度指示会一直挂在浏览器的最下端，蓝瘦人。</p>
-<p>后来接触了一个国内团队基于Chromium定制的浏览器——百分浏览器。它真的非常好用，而且使用Google账号进行同步。我上面对Chrome浏览器的一切“控诉”也都是用惯了它才产生的。我有在Ubuntu下使用Chrome浏览器的需求，但是因为百分浏览器自身整合了许多浏览器扩展的功能，所以如果在Ubuntu下Chrome上安装一些特殊扩展的话，在Windows平台下的百分浏览器又会同步这些重复功能的扩展，其实也没什么，但我就是感觉蓝瘦人。</p>
-<p>那么干脆全部换成Chrome浏览器不就好了吗？嗯~ o(<strong>￣▽￣</strong>)o，Good idea！</p>
-<p>这篇文章的目的是记录一些可以让原生的Chrome浏览器变得更符合我个人使用习惯的浏览器，嘿嘿，变成我的形状。</p>
+                                    <h3 id="c版本">C++版本</h3>
 <ol>
-<li>
-<p><a href="https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86/nfmgapnodlagabglffakjglkalonidld">下载管理</a><br>
-<img src="https://horizain.github.io/post-images/1590848447176.png" alt="" loading="lazy"><br>
-接管浏览器自带的下载页面，既方便管理下载文件，也可以随时查看下载进度，而且风格简洁，提高了使用效率。</p>
-</li>
-<li>
-<p><a href="https://chrome.google.com/webstore/detail/undo-closed-tabs-button/ieehkmoiljghfkejgahoheemdjpdinml">Undo Closed Tabs Button</a><br>
-<img src="https://horizain.github.io/post-images/1590848507074.png" alt="" loading="lazy"><br>
-查看刚刚关闭的标签页，比起历史记录的页面，好用到不知道哪里去了，当然这个功能也是百分浏览器自带的一个功能。</p>
-</li>
-<li>
-<p><a href="https://chrome.google.com/webstore/detail/reading-list/lloccabjgblebdmncjndmiibianflabo">阅读列表</a><br>
-<img src="https://horizain.github.io/post-images/1590848538492.png" alt="" loading="lazy"><br>
-这个扩展非常好用，真的很好用。它可以暂时保存一些标签页，相当于一个临时的收藏夹。有时候一些网页有临时使用的需求，但是又没有放入收藏夹的必要，这个扩展就非常Nice了。放入阅读列表，看完后再叉掉，整个操作体验比使用收藏夹强很多。</p>
-</li>
-<li>
-<p><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm">uBlock Origin</a><br>
-<img src="https://horizain.github.io/post-images/1590848597768.png" alt="" loading="lazy"><br>
-广告拦截软件，简洁好用，内存占用也不高。</p>
-</li>
-<li>
-<p><a href="https://chrome.google.com/webstore/detail/jlgkpaicikihijadgifklkbpdajbkhjo">crxMouse Chrome™ 手势</a><br>
-<img src="https://horizain.github.io/post-images/1590848657762.png" alt="" loading="lazy"><br>
-手势软件，可以使用右键画出快捷操作，还可以使用拖放功能，快速打开网页、图片等。</p>
-</li>
-<li>
-<p><a href="https://chrome.google.com/webstore/detail/%E6%B2%99%E6%8B%89%E6%9F%A5%E8%AF%8D-%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/cdonnmffkdaoajfknoeeecmchibpmkmg">沙拉查词</a><br>
-<img src="https://horizain.github.io/post-images/1590848696911.png" alt="" loading="lazy"><br>
-划词翻译扩展，集成了多个翻译网站的接口，可以一次给出不同的结果，查单词、听读音、看翻译等场景使用非常方便。</p>
-</li>
-<li>
-<p><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a><br>
-<img src="https://horizain.github.io/post-images/1590848603207.png" alt="" loading="lazy"><br>
-大名鼎鼎的油猴插件，可以安装脚本增强网页功能，实现针对性的去除广告，页面重排，功能增强等。</p>
-</li>
+<li><code>ros::init(argc, argv, &quot;node_name&quot;)</code>;</li>
 </ol>
+<p>ros系统的初始化函数，使用ros系统提供的APIs的前提必须步骤</p>
+<!-- more -->
+<ol start="2">
+<li><code>ros::NodeHandle nh;</code></li>
+</ol>
+<p>句柄函数，话题、服务和参数服务器的公共接口</p>
+<ol start="3">
+<li><code>ros::Publisher pub = nh.advertise&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10);</code></li>
+</ol>
+<p>广播一个话题，同时负责订阅者状态的回调。用到的参数依次是：话题名称，队列大小。尖括号中是使用的信息类型</p>
+<ol start="4">
+<li><code>ros::Subscriber sub = nh.subscribe&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10, doMsg);</code></li>
+</ol>
+<p>注册一个话题订阅服务器，接收消息并用回调函数处理。用到的参数依次是：话题名称，队列大小、回调函数名（句柄）</p>
+<ol start="5">
+<li><code>ros::Rate r(1);</code></li>
+</ol>
+<p><code>Rate()</code>是一个类，使用前要先实例化。构造函数起到的是一个定时器的作用。允许你指定一个循环的<strong>频率</strong>，该对象会记录距离上次调用<code>Rate::sleep</code>的时间差，并且sleep恰当的时间保证循环频率的正确。</p>
+<p>一般<code>Rate::sleep()</code>会包括在一个死循环中，由系统负责任务的调度。</p>
+<ol start="6">
+<li><code>ros::spin()</code>和<code>ros::spinOnce()</code></li>
+</ol>
+<p>一看名字就知道这是俩亲兄弟，学名叫<strong>ROS消息回调处理函数</strong>，通常出现在ROS的主循环中，程序需要不断调用<code>spin()</code>或<code>spinOnce()</code>。</p>
+<p>这里摘抄一段网上的解释：</p>
+<blockquote>
+<p>消息订阅器一旦知道chatter上面有data，就会将这data作为参数传入callback函数中，但是此时还没有执行callback函数，而是把callback函数放到了一个回调函数队列中。所以当发布器不断发送data到chatter上面时，就会有相应的callback函数进入队列中，它们函数名一样，只是实参不一样。</p>
+<p>那么什么时候才会执行callback函数呢？</p>
+<p>就是ros::spin()和ros::spinOnce()的事了。</p>
+<p>当spinOnce函数被调用时，spinOnce就会调用回调函数队列中第一个callback函数，此时callback函数才被执行，然后等到下次spinOnce函数又被调用时，回调函数队列中第二个callback函数就会被调用，以此类推。</p>
+<p>所以，这会有一个问题。因为回调函数队列的长度是有限的，如果发布器发送数据的速度太快，spinOnce函数调用的频率太少，就会导致队列溢出，一些callback函数就会被挤掉，导致没被执行到。</p>
+<p>而对于spin函数，一旦进入spin函数，它就不会返回了，相当于它在自己的函数里面死循环了。只要回调函数队列里面有callback函数在，它就会马上去执行callback函数。如果没有的话，它就会阻塞，不会占用CPU。</p>
+</blockquote>
+<p>发布方使用<code>spinOnce()</code>，等待订阅方接受信息并调用回调函数。</p>
+<p>订阅方使用<code>spin()</code>，进入<code>spin</code>的死循环中，一直循环着接收发布方的消息。</p>
 
                                 </div>
                     </article>
@@ -167,9 +164,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://horizain.github.io/post/hello-gridea/">
+                            <a href="https://horizain.github.io/post/kj-091kI2/">
                                 <h3 class="post-title">
-                                    Hello Gridea
+                                    《ROS学习笔记》——第二节：话题通信的理论和实现
                                 </h3>
                             </a>
                         </div>
@@ -182,35 +179,50 @@
                 <!-- right -->
                 <div id="sidebar" class="main-container-right">
                     
-                                <!-- id-card -->
-                                
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://horizain.github.io/images/avatar.png?v=1629559954006)">
-        </div>
-        <h1 class="id_card-title">
-            Horizain
-        </h1>
-        <h2 class="id_card-description">
-            Rain on the horizon
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/horizain" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#c%E7%89%88%E6%9C%AC">C++版本</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
     </div>
     
-                                    
+                            
 
                 </div>
 
