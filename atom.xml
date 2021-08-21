@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2021-08-21T15:41:52.934Z</updated>
+    <updated>2021-08-21T15:42:14.481Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -10,6 +10,58 @@
     <logo>https://horizain.github.io/images/avatar.png</logo>
     <icon>https://horizain.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Horizain</rights>
+    <entry>
+        <title type="html"><![CDATA[第二节补充笔记：编码过程中库函数简介]]></title>
+        <id>https://horizain.github.io/post/jaTAsGEvp/</id>
+        <link href="https://horizain.github.io/post/jaTAsGEvp/">
+        </link>
+        <updated>2021-08-21T15:32:13.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="c版本">C++版本</h3>
+<ol>
+<li><code>ros::init(argc, argv, &quot;node_name&quot;)</code>;</li>
+</ol>
+<p>ros系统的初始化函数，使用ros系统提供的APIs的前提必须步骤</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="c版本">C++版本</h3>
+<ol>
+<li><code>ros::init(argc, argv, &quot;node_name&quot;)</code>;</li>
+</ol>
+<p>ros系统的初始化函数，使用ros系统提供的APIs的前提必须步骤</p>
+<!-- more -->
+<ol start="2">
+<li><code>ros::NodeHandle nh;</code></li>
+</ol>
+<p>句柄函数，话题、服务和参数服务器的公共接口</p>
+<ol start="3">
+<li><code>ros::Publisher pub = nh.advertise&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10);</code></li>
+</ol>
+<p>广播一个话题，同时负责订阅者状态的回调。用到的参数依次是：话题名称，队列大小。尖括号中是使用的信息类型</p>
+<ol start="4">
+<li><code>ros::Subscriber sub = nh.subscribe&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10, doMsg);</code></li>
+</ol>
+<p>注册一个话题订阅服务器，接收消息并用回调函数处理。用到的参数依次是：话题名称，队列大小、回调函数名（句柄）</p>
+<ol start="5">
+<li><code>ros::Rate r(1);</code></li>
+</ol>
+<p><code>Rate()</code>是一个类，使用前要先实例化。构造函数起到的是一个定时器的作用。允许你指定一个循环的<strong>频率</strong>，该对象会记录距离上次调用<code>Rate::sleep</code>的时间差，并且sleep恰当的时间保证循环频率的正确。</p>
+<p>一般<code>Rate::sleep()</code>会包括在一个死循环中，由系统负责任务的调度。</p>
+<ol start="6">
+<li><code>ros::spin()</code>和<code>ros::spinOnce()</code></li>
+</ol>
+<p>一看名字就知道这是俩亲兄弟，学名叫<strong>ROS消息回调处理函数</strong>，通常出现在ROS的主循环中，程序需要不断调用<code>spin()</code>或<code>spinOnce()</code>。</p>
+<p>这里摘抄一段网上的解释：</p>
+<blockquote>
+<p>消息订阅器一旦知道chatter上面有data，就会将这data作为参数传入callback函数中，但是此时还没有执行callback函数，而是把callback函数放到了一个回调函数队列中。所以当发布器不断发送data到chatter上面时，就会有相应的callback函数进入队列中，它们函数名一样，只是实参不一样。</p>
+<p>那么什么时候才会执行callback函数呢？</p>
+<p>就是ros::spin()和ros::spinOnce()的事了。</p>
+<p>当spinOnce函数被调用时，spinOnce就会调用回调函数队列中第一个callback函数，此时callback函数才被执行，然后等到下次spinOnce函数又被调用时，回调函数队列中第二个callback函数就会被调用，以此类推。</p>
+<p>所以，这会有一个问题。因为回调函数队列的长度是有限的，如果发布器发送数据的速度太快，spinOnce函数调用的频率太少，就会导致队列溢出，一些callback函数就会被挤掉，导致没被执行到。</p>
+<p>而对于spin函数，一旦进入spin函数，它就不会返回了，相当于它在自己的函数里面死循环了。只要回调函数队列里面有callback函数在，它就会马上去执行callback函数。如果没有的话，它就会阻塞，不会占用CPU。</p>
+</blockquote>
+<p>发布方使用<code>spinOnce()</code>，等待订阅方接受信息并调用回调函数。</p>
+<p>订阅方使用<code>spin()</code>，进入<code>spin</code>的死循环中，一直循环着接收发布方的消息。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《ROS学习笔记》——第二节：话题通信的理论和实现]]></title>
         <id>https://horizain.github.io/post/kj-091kI2/</id>
