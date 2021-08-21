@@ -7,7 +7,7 @@
 <title>
     第一节补充笔记：编码过程中遇到的问题 | Horizain
 </title>
-<link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629559153179">
+<link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629559279332">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -35,7 +35,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://horizain.github.io">
-                <img class="avatar" src="https://horizain.github.io/images/avatar.png?v=1629559153179" alt="">
+                <img class="avatar" src="https://horizain.github.io/images/avatar.png?v=1629559279332" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -112,7 +112,7 @@
                             <time class="post-time">2021-08-21</time>
                             
                                 <a href="https://horizain.github.io/tag/ROS/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_3">
                             #ROS学习笔记
                         </a>
                                 
@@ -123,14 +123,14 @@
 <!-- more -->
 <h3 id="一-文件管理">一、文件管理</h3>
 <p>我现在的项目文件管理目录如下：</p>
-<p><img src="https://horizain.github.io/post-images/1629557450149.png" alt="" loading="lazy">![image-20210819221054992]</p>
+<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629559247368.png" alt="" loading="lazy"></figure>
 <p>在home目录下新建catkin_ws作为ROS系统的编译总目录，然后在下面新建demo0x_ws文件夹作为子项目的编译目录，我个人认为这样的安排是比较合理的，编码时只需要在对应的子项目下在终端中输入<code>code .</code>打开VSCode即可。</p>
-<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629557475603.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://horizain.github.io/post-images/1629559252964.png" alt="" loading="lazy"></figure>
 <h3 id="二-vscode的插件使用">二、vscode的插件使用</h3>
 <p>当前在vscode中安装的插件有：</p>
-<figure data-type="image" tabindex="2"><img src="https://horizain.github.io/post-images/1629557482468.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://horizain.github.io/post-images/1629559258434.png" alt="" loading="lazy"></figure>
 <p>亲测，安装完插件后，通过ROS插件新建Package，可以直接使用快捷键<code>Ctrl+Shift+B</code>调用编译</p>
-<figure data-type="image" tabindex="3"><img src="https://horizain.github.io/post-images/1629557493528.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://horizain.github.io/post-images/1629559263746.png" alt="" loading="lazy"></figure>
 <p>当然这个快捷编译是有前提的，介绍一下在catkin_ws总目录下新建一个子项目的流程：</p>
 <p>1、在catkin_ws下新建一个子文件夹，<code>mkdir -p demo0x_ws/src</code></p>
 <p>2、进入demo0x_ws目录下</p>
@@ -142,9 +142,9 @@
 <p>解决方法：从 Ubuntu Software Apps 安装的是 snap 软件包，也就是非 vscode 官方编译发布的安装包，有这个输入法bug，在VSCode 官网下载重新安装即可。</p>
 <h3 id="四-原教程212中代码的修改">四、原教程2.1.2中代码的修改</h3>
 <p>教程中的代码有一点小小的问题，发布的数字会比接收到的小1，经过下面的修改，即可解决。</p>
-<figure data-type="image" tabindex="4"><img src="https://horizain.github.io/post-images/1629557519894.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://horizain.github.io/post-images/1629559272430.png" alt="" loading="lazy"></figure>
 <p>把上面的代码修改为下面的，其实就是把显示数据的代码<code>rospy.loginfo</code>的顺序修改一下</p>
-<figure data-type="image" tabindex="5"><img src="https://horizain.github.io/post-images/1629557524882.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://horizain.github.io/post-images/1629559277504.png" alt="" loading="lazy"></figure>
 
                                 </div>
                     </article>
