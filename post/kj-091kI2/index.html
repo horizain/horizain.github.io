@@ -7,7 +7,7 @@
 <title>
     《ROS学习笔记》——第二节：话题通信的理论和实现 | Horizain
 </title>
-<link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629558747237">
+<link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629559022616">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -35,7 +35,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://horizain.github.io">
-                <img class="avatar" src="https://horizain.github.io/images/avatar.png?v=1629558747237" alt="">
+                <img class="avatar" src="https://horizain.github.io/images/avatar.png?v=1629559022616" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -112,15 +112,14 @@
                             <time class="post-time">2021-08-21</time>
                             
                                 <a href="https://horizain.github.io/tag/ROS/" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-banana">
                             #ROS学习笔记
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629558578305.jpg" alt="" loading="lazy"></figure>
-<p>话题通信的模型中涉及三类角色：</p>
+                                    <p>话题通的模型中涉及三类角色：</p>
 <ol>
 <li>
 <p>ROS Master</p>
@@ -134,6 +133,7 @@
 </ol>
 <p>ROS Master负责Talker和Listener的注册信息，并匹配话题(topic)相同的Talker和Listener建立连接，连接建立后，Talker发布的消息可以被Listener接收。建立连接后，可以不再需要ROS Master。</p>
 <!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629558578305.jpg" alt="" loading="lazy"></figure>
 <h3 id="1-理论流程">1、理论流程</h3>
 <ol start="0">
 <li>Talker注册</li>
