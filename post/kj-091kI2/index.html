@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    第一节补充笔记：编码过程中遇到的问题 | Horizain
+    《ROS学习笔记》——第二节：话题通信的理论和实现 | Horizain
 </title>
 <link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629558747237">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,45 +106,206 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            第一节补充笔记：编码过程中遇到的问题
+                            《ROS学习笔记》——第二节：话题通信的理论和实现
                         </h2>
                         <div class="post-info">
                             <time class="post-time">2021-08-21</time>
                             
                                 <a href="https://horizain.github.io/tag/ROS/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-info">
                             #ROS学习笔记
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <p>对第一节知识点的补充</p>
+                                    <figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629558578305.jpg" alt="" loading="lazy"></figure>
+<p>话题通信的模型中涉及三类角色：</p>
+<ol>
+<li>
+<p>ROS Master</p>
+</li>
+<li>
+<p>Talker</p>
+</li>
+<li>
+<p>Listener</p>
+</li>
+</ol>
+<p>ROS Master负责Talker和Listener的注册信息，并匹配话题(topic)相同的Talker和Listener建立连接，连接建立后，Talker发布的消息可以被Listener接收。建立连接后，可以不再需要ROS Master。</p>
 <!-- more -->
-<h3 id="一-文件管理">一、文件管理</h3>
-<p>我现在的项目文件管理目录如下：</p>
-<p><img src="https://horizain.github.io/post-images/1629557450149.png" alt="" loading="lazy">![image-20210819221054992]</p>
-<p>在home目录下新建catkin_ws作为ROS系统的编译总目录，然后在下面新建demo0x_ws文件夹作为子项目的编译目录，我个人认为这样的安排是比较合理的，编码时只需要在对应的子项目下在终端中输入<code>code .</code>打开VSCode即可。</p>
-<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629557475603.png" alt="" loading="lazy"></figure>
-<h3 id="二-vscode的插件使用">二、vscode的插件使用</h3>
-<p>当前在vscode中安装的插件有：</p>
-<figure data-type="image" tabindex="2"><img src="https://horizain.github.io/post-images/1629557482468.png" alt="" loading="lazy"></figure>
-<p>亲测，安装完插件后，通过ROS插件新建Package，可以直接使用快捷键<code>Ctrl+Shift+B</code>调用编译</p>
-<figure data-type="image" tabindex="3"><img src="https://horizain.github.io/post-images/1629557493528.png" alt="" loading="lazy"></figure>
-<p>当然这个快捷编译是有前提的，介绍一下在catkin_ws总目录下新建一个子项目的流程：</p>
-<p>1、在catkin_ws下新建一个子文件夹，<code>mkdir -p demo0x_ws/src</code></p>
-<p>2、进入demo0x_ws目录下</p>
-<p>3、在终端执行<code>catkin_make</code></p>
-<p>4、在vscode中，右键src目录新建一个package，先输入package的名称，再输入需要的依赖软件包名，需要注意的是，package的名称要求是小写字母、下划线、数字的组合。</p>
-<p>然后使用快捷键调用编译，你就会发现，出现了catkin_make的选项。</p>
-<h3 id="三-在vscode中使用搜狗输入法的问题">三、在vscode中使用搜狗输入法的问题</h3>
-<p>问题：在vscode中不能使用搜狗输入法，在系统其他环境中则正常</p>
-<p>解决方法：从 Ubuntu Software Apps 安装的是 snap 软件包，也就是非 vscode 官方编译发布的安装包，有这个输入法bug，在VSCode 官网下载重新安装即可。</p>
-<h3 id="四-原教程212中代码的修改">四、原教程2.1.2中代码的修改</h3>
-<p>教程中的代码有一点小小的问题，发布的数字会比接收到的小1，经过下面的修改，即可解决。</p>
-<figure data-type="image" tabindex="4"><img src="https://horizain.github.io/post-images/1629557519894.png" alt="" loading="lazy"></figure>
-<p>把上面的代码修改为下面的，其实就是把显示数据的代码<code>rospy.loginfo</code>的顺序修改一下</p>
-<figure data-type="image" tabindex="5"><img src="https://horizain.github.io/post-images/1629557524882.png" alt="" loading="lazy"></figure>
+<h3 id="1-理论流程">1、理论流程</h3>
+<ol start="0">
+<li>Talker注册</li>
+</ol>
+<p>Talker会通过RPC在ROS Master中注册信息，包括自身发布消息的话题名称、自己的RPC地址</p>
+<ol>
+<li>Listener注册</li>
+</ol>
+<p>同上，Listener会注册自身需要订阅的话题名和自己的RPC地址</p>
+<ol start="2">
+<li>ROS Master实现信息匹配</li>
+</ol>
+<p>ROS Master会根据注册表中的信息匹配Talker和Listener，并通过RPC先Listener发送Talker的RPC地址</p>
+<ol start="3">
+<li>Listener先Talker发送请求</li>
+</ol>
+<p>Listener 根据接收到的 RPC 地址，通过 RPC 向 Talker 发送连接请求，传输订阅的话题名称、消息类型以及通信协议(TCP/UDP)</p>
+<ol start="4">
+<li>Talker确认请求</li>
+</ol>
+<p>Talker接受到请求后，通过RPC先Listener确认连接信息，并发送自己的TCP地址</p>
+<ol start="5">
+<li>Listener与Talker建立连接</li>
+</ol>
+<p>Listener根据返回到的TCP地址与Talker建立网络连接</p>
+<ol start="6">
+<li>Talker向Listener发送消息</li>
+</ol>
+<p>连接建立后，Talker可以开始向Listener发布消息</p>
+<h3 id="2-通俗理解">2、通俗理解</h3>
+<ol start="0">
+<li>
+<p>女方（打电话）找媒婆</p>
+</li>
+<li>
+<p>男方（打电话）找媒婆</p>
+</li>
+<li>
+<p>媒婆匹配信息，把女方信息（打电话）给男方</p>
+</li>
+<li>
+<p>男方给女方打电话</p>
+</li>
+<li>
+<p>女方确认男方信息，并把自己的微信给男方</p>
+</li>
+<li>
+<p>男方通过微信联系女方</p>
+</li>
+<li>
+<p>男方和女方的后续沟通使用微信继续，而不再用媒婆传话</p>
+</li>
+</ol>
+<p><strong>在通俗理解中，打电话即RCP通信协议，微信即TCP通信协议</strong></p>
+<h3 id="3-注意事项">3、注意事项</h3>
+<ol start="0">
+<li>
+<p>使用的通信协议有RPC和TCP，前期与ROS Master相关的通信是RCP协议，后面Talker与Listener的直接通信使用TCP协议</p>
+</li>
+<li>
+<p>步骤0和步骤1的顺序先后无所谓</p>
+</li>
+<li>
+<p>talker和listener可以同时存在多个</p>
+</li>
+</ol>
+<h3 id="4-话题通信应用时的关注点">4、话题通信应用时的关注点</h3>
+<ol start="0">
+<li>大部分实现已被封装</li>
+<li>话题的设置</li>
+<li>发布者和订阅放的实现</li>
+<li>信息载体</li>
+</ol>
+<h3 id="5-代码实现">5、代码实现</h3>
+<p>上面介绍的流程中的大部分工作都有ROS系统抽象封装好了，我们只需要简单调用即可。</p>
+<ol start="0">
+<li>实例化ROS句柄：</li>
+</ol>
+<p><code>ros::NodeHandle nh;</code></p>
+<ol>
+<li>发布方的注册：</li>
+</ol>
+<p><code>ros::Publisher pub = nh.advertise&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10);</code></p>
+<ol start="2">
+<li>订阅方的注册：</li>
+</ol>
+<p><code>ros::Subscriber sub = nh.subscribe&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10, doMsg);</code></p>
+<p>我们可以发现，双方的匹配是根据注册函数中的第一个参数（<code>chatter</code>）决定的，即话题名称。</p>
+<p>双方注册自身的信息后，接下来的工作由ROS系统完成。</p>
+<p><strong>发布方</strong>发布信息：</p>
+<p><code>pub.publish(msg);</code></p>
+<p><strong>订阅方</strong>注册好信息后，就一直处于待接收状态，我们需要将订阅方阻塞即可：<code>ros::spin();</code></p>
+<p>循环读取接收的数据，并调用回调函数处理</p>
+<h3 id="6-自定义msg">6、自定义msg</h3>
+<p>std_msgs包括：</p>
+<ul>
+<li>int8, int16, int32, int64 (或者无符号类型: uint*)</li>
+<li>float32, float64</li>
+<li>string</li>
+<li>time, duration</li>
+<li>other msg files</li>
+<li>variable-length array[] and fixed-length array[C]</li>
+</ul>
+<p>我们可以自定义复合类型的msg类型，比如创建一个自定义消息，该消息包含人的信息:姓名、身高、年龄。</p>
+<p><strong>自定义msg流程：</strong></p>
+<ol start="0">
+<li>定义msg文件</li>
+</ol>
+<p>在package新建目录msg，添加Person.msg</p>
+<p>内容为：</p>
+<pre><code>string name
+uint16 age
+float64 height
+</code></pre>
+<ol>
+<li>修改配置文件</li>
+</ol>
+<p><strong>package.xml</strong>中添加编译依赖与执行依赖</p>
+<pre><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</code></pre>
+<p><strong>CMakeLists.txt</strong>编辑 msg 相关配置</p>
+<pre><code>find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+)
+# 需要加入 message_generation,必须有 std_msgs
+</code></pre>
+<pre><code>## 配置 msg 源文件
+add_message_files(
+  FILES
+  Person.msg
+)
+</code></pre>
+<pre><code># 生成消息时依赖于 std_msgs
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+</code></pre>
+<pre><code>#执行时依赖
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES demo02_talker_listener
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+#  DEPENDS system_lib
+)
+</code></pre>
+<p>需要注意的是，上述语句的顺序不能搞错，否则会报错</p>
+<ol start="3">
+<li>编译</li>
+</ol>
+<p>执行命令<code>cmake_make</code></p>
+<p>C++ 需要调用的中间文件(.../工作空间/devel/include/包名/xxx.h)</p>
+<p>Python 需要调用的中间文件(.../工作空间/devel/lib/python3/dist-packages/包名/msg)</p>
+<ol start="4">
+<li>调用的注意事项</li>
+</ol>
+<p>为了方便代码提示以及避免误抛异常，需要先配置 vscode，将前面生成的 头文件和python文件路径配置进vscode的json配置文件</p>
+<p>cpp：c_cpp_properties.json 的 includepath</p>
+<p>python：settings.json的python.autoComplete.extraPaths</p>
+<ol start="5">
+<li>调用</li>
+</ol>
+<p><strong>发布者调用：</strong></p>
+<p><code>ros::Publisher pub=nh.advertise&lt;current_msgs::Person&gt;(&quot;chatter_person&quot;, 1000);</code></p>
+<p><strong>订阅者调用：</strong></p>
+<p><code>ros::Subscriber sub = nh.subscribe&lt;current_msgs::Person&gt;(&quot;chatter_person&quot;, 10, doMsg);</code></p>
+<p>可以发现，函数后面的尖括号包含了我们自定义的信息类型，这个是C++的语法知识，叫做模板，后面会详细补充相关知识。</p>
+<p>其他与发布订阅标准信息类型一样。</p>
 
                                 </div>
                     </article>
@@ -152,9 +313,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://horizain.github.io/post/9BG5hmaD4/">
+                            <a href="https://horizain.github.io/post/xDVXnfdtK/">
                                 <h3 class="post-title">
-                                    《ROS学习笔记》——第一节：ROS的安装与调试
+                                    第一节补充笔记：编码过程中遇到的问题
                                 </h3>
                             </a>
                         </div>
@@ -177,10 +338,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#%E4%B8%80-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86">一、文件管理</a></li>
-<li><a href="#%E4%BA%8C-vscode%E7%9A%84%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8">二、vscode的插件使用</a></li>
-<li><a href="#%E4%B8%89-%E5%9C%A8vscode%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98">三、在vscode中使用搜狗输入法的问题</a></li>
-<li><a href="#%E5%9B%9B-%E5%8E%9F%E6%95%99%E7%A8%8B212%E4%B8%AD%E4%BB%A3%E7%A0%81%E7%9A%84%E4%BF%AE%E6%94%B9">四、原教程2.1.2中代码的修改</a></li>
+<li><a href="#1-%E7%90%86%E8%AE%BA%E6%B5%81%E7%A8%8B">1、理论流程</a></li>
+<li><a href="#2-%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3">2、通俗理解</a></li>
+<li><a href="#3-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">3、注意事项</a></li>
+<li><a href="#4-%E8%AF%9D%E9%A2%98%E9%80%9A%E4%BF%A1%E5%BA%94%E7%94%A8%E6%97%B6%E7%9A%84%E5%85%B3%E6%B3%A8%E7%82%B9">4、话题通信应用时的关注点</a></li>
+<li><a href="#5-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">5、代码实现</a></li>
+<li><a href="#6-%E8%87%AA%E5%AE%9A%E4%B9%89msg">6、自定义msg</a></li>
 </ul>
 </li>
 </ul>

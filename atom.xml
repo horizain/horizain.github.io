@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2021-08-21T15:04:09.574Z</updated>
+    <updated>2021-08-21T15:12:30.436Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -10,6 +10,268 @@
     <logo>https://horizain.github.io/images/avatar.png</logo>
     <icon>https://horizain.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Horizain</rights>
+    <entry>
+        <title type="html"><![CDATA[第二节补充笔记：编码过程中库函数简介]]></title>
+        <id>https://horizain.github.io/post/_pP_eDKwO/</id>
+        <link href="https://horizain.github.io/post/_pP_eDKwO/">
+        </link>
+        <updated>2021-08-21T15:10:54.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="c版本">C++版本</h3>
+<ol>
+<li><code>ros::init(argc, argv, &quot;node_name&quot;)</code>;</li>
+</ol>
+<p>ros系统的初始化函数，使用ros系统提供的APIs的前提必须步骤</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="c版本">C++版本</h3>
+<ol>
+<li><code>ros::init(argc, argv, &quot;node_name&quot;)</code>;</li>
+</ol>
+<p>ros系统的初始化函数，使用ros系统提供的APIs的前提必须步骤</p>
+<!-- more -->
+<ol start="2">
+<li><code>ros::NodeHandle nh;</code></li>
+</ol>
+<p>句柄函数，话题、服务和参数服务器的公共接口</p>
+<ol start="3">
+<li><code>ros::Publisher pub = nh.advertise&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10);</code></li>
+</ol>
+<p>广播一个话题，同时负责订阅者状态的回调。用到的参数依次是：话题名称，队列大小。尖括号中是使用的信息类型</p>
+<ol start="4">
+<li><code>ros::Subscriber sub = nh.subscribe&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10, doMsg);</code></li>
+</ol>
+<p>注册一个话题订阅服务器，接收消息并用回调函数处理。用到的参数依次是：话题名称，队列大小、回调函数名（句柄）</p>
+<ol start="5">
+<li><code>ros::Rate r(1);</code></li>
+</ol>
+<p><code>Rate()</code>是一个类，使用前要先实例化。构造函数起到的是一个定时器的作用。允许你指定一个循环的<strong>频率</strong>，该对象会记录距离上次调用<code>Rate::sleep</code>的时间差，并且sleep恰当的时间保证循环频率的正确。</p>
+<p>一般<code>Rate::sleep()</code>会包括在一个死循环中，由系统负责任务的调度。</p>
+<ol start="6">
+<li><code>ros::spin()</code>和<code>ros::spinOnce()</code></li>
+</ol>
+<p>一看名字就知道这是俩亲兄弟，学名叫<strong>ROS消息回调处理函数</strong>，通常出现在ROS的主循环中，程序需要不断调用<code>spin()</code>或<code>spinOnce()</code>。</p>
+<p>这里摘抄一段网上的解释：</p>
+<blockquote>
+<p>消息订阅器一旦知道chatter上面有data，就会将这data作为参数传入callback函数中，但是此时还没有执行callback函数，而是把callback函数放到了一个回调函数队列中。所以当发布器不断发送data到chatter上面时，就会有相应的callback函数进入队列中，它们函数名一样，只是实参不一样。</p>
+<p>那么什么时候才会执行callback函数呢？</p>
+<p>就是ros::spin()和ros::spinOnce()的事了。</p>
+<p>当spinOnce函数被调用时，spinOnce就会调用回调函数队列中第一个callback函数，此时callback函数才被执行，然后等到下次spinOnce函数又被调用时，回调函数队列中第二个callback函数就会被调用，以此类推。</p>
+<p>所以，这会有一个问题。因为回调函数队列的长度是有限的，如果发布器发送数据的速度太快，spinOnce函数调用的频率太少，就会导致队列溢出，一些callback函数就会被挤掉，导致没被执行到。</p>
+<p>而对于spin函数，一旦进入spin函数，它就不会返回了，相当于它在自己的函数里面死循环了。只要回调函数队列里面有callback函数在，它就会马上去执行callback函数。如果没有的话，它就会阻塞，不会占用CPU。</p>
+</blockquote>
+<p>发布方使用<code>spinOnce()</code>，等待订阅方接受信息并调用回调函数。</p>
+<p>订阅方使用<code>spin()</code>，进入<code>spin</code>的死循环中，一直循环着接收发布方的消息。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[《ROS学习笔记》——第二节：话题通信的理论和实现]]></title>
+        <id>https://horizain.github.io/post/kj-091kI2/</id>
+        <link href="https://horizain.github.io/post/kj-091kI2/">
+        </link>
+        <updated>2021-08-21T15:04:20.000Z</updated>
+        <summary type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629558578305.jpg" alt="" loading="lazy"></figure>
+<p>话题通信的模型中涉及三类角色：</p>
+<ol>
+<li>
+<p>ROS Master</p>
+</li>
+<li>
+<p>Talker</p>
+</li>
+<li>
+<p>Listener</p>
+</li>
+</ol>
+<p>ROS Master负责Talker和Listener的注册信息，并匹配话题(topic)相同的Talker和Listener建立连接，连接建立后，Talker发布的消息可以被Listener接收。建立连接后，可以不再需要ROS Master。</p>
+]]></summary>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1629558578305.jpg" alt="" loading="lazy"></figure>
+<p>话题通信的模型中涉及三类角色：</p>
+<ol>
+<li>
+<p>ROS Master</p>
+</li>
+<li>
+<p>Talker</p>
+</li>
+<li>
+<p>Listener</p>
+</li>
+</ol>
+<p>ROS Master负责Talker和Listener的注册信息，并匹配话题(topic)相同的Talker和Listener建立连接，连接建立后，Talker发布的消息可以被Listener接收。建立连接后，可以不再需要ROS Master。</p>
+<!-- more -->
+<h3 id="1-理论流程">1、理论流程</h3>
+<ol start="0">
+<li>Talker注册</li>
+</ol>
+<p>Talker会通过RPC在ROS Master中注册信息，包括自身发布消息的话题名称、自己的RPC地址</p>
+<ol>
+<li>Listener注册</li>
+</ol>
+<p>同上，Listener会注册自身需要订阅的话题名和自己的RPC地址</p>
+<ol start="2">
+<li>ROS Master实现信息匹配</li>
+</ol>
+<p>ROS Master会根据注册表中的信息匹配Talker和Listener，并通过RPC先Listener发送Talker的RPC地址</p>
+<ol start="3">
+<li>Listener先Talker发送请求</li>
+</ol>
+<p>Listener 根据接收到的 RPC 地址，通过 RPC 向 Talker 发送连接请求，传输订阅的话题名称、消息类型以及通信协议(TCP/UDP)</p>
+<ol start="4">
+<li>Talker确认请求</li>
+</ol>
+<p>Talker接受到请求后，通过RPC先Listener确认连接信息，并发送自己的TCP地址</p>
+<ol start="5">
+<li>Listener与Talker建立连接</li>
+</ol>
+<p>Listener根据返回到的TCP地址与Talker建立网络连接</p>
+<ol start="6">
+<li>Talker向Listener发送消息</li>
+</ol>
+<p>连接建立后，Talker可以开始向Listener发布消息</p>
+<h3 id="2-通俗理解">2、通俗理解</h3>
+<ol start="0">
+<li>
+<p>女方（打电话）找媒婆</p>
+</li>
+<li>
+<p>男方（打电话）找媒婆</p>
+</li>
+<li>
+<p>媒婆匹配信息，把女方信息（打电话）给男方</p>
+</li>
+<li>
+<p>男方给女方打电话</p>
+</li>
+<li>
+<p>女方确认男方信息，并把自己的微信给男方</p>
+</li>
+<li>
+<p>男方通过微信联系女方</p>
+</li>
+<li>
+<p>男方和女方的后续沟通使用微信继续，而不再用媒婆传话</p>
+</li>
+</ol>
+<p><strong>在通俗理解中，打电话即RCP通信协议，微信即TCP通信协议</strong></p>
+<h3 id="3-注意事项">3、注意事项</h3>
+<ol start="0">
+<li>
+<p>使用的通信协议有RPC和TCP，前期与ROS Master相关的通信是RCP协议，后面Talker与Listener的直接通信使用TCP协议</p>
+</li>
+<li>
+<p>步骤0和步骤1的顺序先后无所谓</p>
+</li>
+<li>
+<p>talker和listener可以同时存在多个</p>
+</li>
+</ol>
+<h3 id="4-话题通信应用时的关注点">4、话题通信应用时的关注点</h3>
+<ol start="0">
+<li>大部分实现已被封装</li>
+<li>话题的设置</li>
+<li>发布者和订阅放的实现</li>
+<li>信息载体</li>
+</ol>
+<h3 id="5-代码实现">5、代码实现</h3>
+<p>上面介绍的流程中的大部分工作都有ROS系统抽象封装好了，我们只需要简单调用即可。</p>
+<ol start="0">
+<li>实例化ROS句柄：</li>
+</ol>
+<p><code>ros::NodeHandle nh;</code></p>
+<ol>
+<li>发布方的注册：</li>
+</ol>
+<p><code>ros::Publisher pub = nh.advertise&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10);</code></p>
+<ol start="2">
+<li>订阅方的注册：</li>
+</ol>
+<p><code>ros::Subscriber sub = nh.subscribe&lt;std_msgs::String&gt;(&quot;chatter&quot;, 10, doMsg);</code></p>
+<p>我们可以发现，双方的匹配是根据注册函数中的第一个参数（<code>chatter</code>）决定的，即话题名称。</p>
+<p>双方注册自身的信息后，接下来的工作由ROS系统完成。</p>
+<p><strong>发布方</strong>发布信息：</p>
+<p><code>pub.publish(msg);</code></p>
+<p><strong>订阅方</strong>注册好信息后，就一直处于待接收状态，我们需要将订阅方阻塞即可：<code>ros::spin();</code></p>
+<p>循环读取接收的数据，并调用回调函数处理</p>
+<h3 id="6-自定义msg">6、自定义msg</h3>
+<p>std_msgs包括：</p>
+<ul>
+<li>int8, int16, int32, int64 (或者无符号类型: uint*)</li>
+<li>float32, float64</li>
+<li>string</li>
+<li>time, duration</li>
+<li>other msg files</li>
+<li>variable-length array[] and fixed-length array[C]</li>
+</ul>
+<p>我们可以自定义复合类型的msg类型，比如创建一个自定义消息，该消息包含人的信息:姓名、身高、年龄。</p>
+<p><strong>自定义msg流程：</strong></p>
+<ol start="0">
+<li>定义msg文件</li>
+</ol>
+<p>在package新建目录msg，添加Person.msg</p>
+<p>内容为：</p>
+<pre><code>string name
+uint16 age
+float64 height
+</code></pre>
+<ol>
+<li>修改配置文件</li>
+</ol>
+<p><strong>package.xml</strong>中添加编译依赖与执行依赖</p>
+<pre><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</code></pre>
+<p><strong>CMakeLists.txt</strong>编辑 msg 相关配置</p>
+<pre><code>find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+)
+# 需要加入 message_generation,必须有 std_msgs
+</code></pre>
+<pre><code>## 配置 msg 源文件
+add_message_files(
+  FILES
+  Person.msg
+)
+</code></pre>
+<pre><code># 生成消息时依赖于 std_msgs
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+</code></pre>
+<pre><code>#执行时依赖
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES demo02_talker_listener
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+#  DEPENDS system_lib
+)
+</code></pre>
+<p>需要注意的是，上述语句的顺序不能搞错，否则会报错</p>
+<ol start="3">
+<li>编译</li>
+</ol>
+<p>执行命令<code>cmake_make</code></p>
+<p>C++ 需要调用的中间文件(.../工作空间/devel/include/包名/xxx.h)</p>
+<p>Python 需要调用的中间文件(.../工作空间/devel/lib/python3/dist-packages/包名/msg)</p>
+<ol start="4">
+<li>调用的注意事项</li>
+</ol>
+<p>为了方便代码提示以及避免误抛异常，需要先配置 vscode，将前面生成的 头文件和python文件路径配置进vscode的json配置文件</p>
+<p>cpp：c_cpp_properties.json 的 includepath</p>
+<p>python：settings.json的python.autoComplete.extraPaths</p>
+<ol start="5">
+<li>调用</li>
+</ol>
+<p><strong>发布者调用：</strong></p>
+<p><code>ros::Publisher pub=nh.advertise&lt;current_msgs::Person&gt;(&quot;chatter_person&quot;, 1000);</code></p>
+<p><strong>订阅者调用：</strong></p>
+<p><code>ros::Subscriber sub = nh.subscribe&lt;current_msgs::Person&gt;(&quot;chatter_person&quot;, 10, doMsg);</code></p>
+<p>可以发现，函数后面的尖括号包含了我们自定义的信息类型，这个是C++的语法知识，叫做模板，后面会详细补充相关知识。</p>
+<p>其他与发布订阅标准信息类型一样。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第一节补充笔记：编码过程中遇到的问题]]></title>
         <id>https://horizain.github.io/post/xDVXnfdtK/</id>
