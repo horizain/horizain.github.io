@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Python笔记本——openpyxl操作excel表格 | Horizain
+    《ROS学习笔记》——第三节：服务通信的理论和实现 | Horizain
 </title>
 <link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1629713215585">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,88 +106,122 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Python笔记本——openpyxl操作excel表格
+                            《ROS学习笔记》——第三节：服务通信的理论和实现
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2021-05-10</time>
+                            <time class="post-time">2021-08-23</time>
                             
-                                <a href="https://horizain.github.io/tag/ZIqcS_yX5/" class="post-tag i-tag
-                            i-tag-info">
-                            #Python
+                                <a href="https://horizain.github.io/tag/ROS/" class="post-tag i-tag
+                            i-tag-">
+                            #ROS学习笔记
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <p>openpyxl是一个创建、修改excel文件的模块，保存的文件的扩展名一般为<code>.xlsx</code></p>
+                                    <p>服务通信主要运用于对<strong>偶然性</strong>、<strong>实时性</strong>有要求，且有一定<strong>逻辑处理需求</strong>的数据传输场景</p>
 <!-- more -->
-<h2 id="食用方法">食用方法</h2>
-<h4 id="导入模块">导入模块</h4>
-<pre><code class="language-python">
-from openpyxl import Workbook, load_workbook
-
-# Workbook：创建新文件
-
-# load_workbook：读取已有文件
-
-from openpyxl.style import Alignment, Font
-
-# Alignment：设置单元格格式
-
-# Font：设置字体格式
-</code></pre>
-<h4 id="打开文件">打开文件</h4>
-<pre><code class="language-python">
-if path.exists():
-    wb = load_workbook(path)
-else:
-    wb = Workbook()
-
-# 选择默认的表
-# ws = wb.active
-
-# 也可以创建删除已有的表，创建新表
-
-</code></pre>
-<h4 id="读写单元格">读写单元格</h4>
-<p>写入单元格有两种方式：</p>
-<pre><code class="language-python">
-# 第一种
-# 可以构建读写用字符串，形成类似'A1'这种形式的字符
-temp = '%s%s' % (column, row)
-ws[temp] = text
-
-# 第二种
-ws.cell(row=1, column=1, value=text)
-</code></pre>
-<p>读取单元格同样有两种方法：</p>
-<pre><code class="language-python">
-# 第一种
-ws['A1'].value
-
-# 第二种
-ws.cell(row=1, column=1).value
-</code></pre>
-<h4 id="合并单元格并居中">合并单元格并居中</h4>
-<pre><code class="language-python">
-# 构造例如 `A1:B2` 这种形式的字符
-ws.merge_cells('%s%s:%s%s' % (start_column, start_row, end_column, end_row))
-
-# 单元格合并后标号等于合并前左上角第一个单元格的标号
-ws[&quot;%s%s&quot; % (start_column, start_row)].alignment = Alignment(vertical='center', wrapText=True)
-# vertical='center'：单元格垂直居中
-# wrapText=Tru：自动换行
-</code></pre>
+<h3 id="服务通信理论模型">服务通信理论模型：</h3>
+<figure data-type="image" tabindex="1"><img src="http://www.autolabor.com.cn/book/ROSTutorials/assets/02_%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.jpg" alt="img" loading="lazy"></figure>
+<h3 id="流程步骤">流程步骤：</h3>
+<ol start="0">
+<li>
+<p>Server注册</p>
+</li>
+<li>
+<p>Client注册</p>
+</li>
+<li>
+<p>ROS Master实现信息匹配</p>
+</li>
+<li>
+<p>Client发送请求</p>
+</li>
+<li>
+<p>Server发送响应</p>
+</li>
+</ol>
 <blockquote>
-<p>注：合并单元格的内容为合并前左上角单元格的内容，所以合并并写入的操作顺序为“先写入左上角，再合并”</p>
+<p><strong>注意：</strong></p>
+<ol start="0">
+<li>客户端请求时要保证服务器已经启动</li>
+<li>服务端和客户端可以存在多个</li>
+</ol>
 </blockquote>
-<h4 id="保存文件">保存文件</h4>
-<pre><code class="language-python">
-ws.save(abspath)
-# abspath是以.xlsx扩展名结尾的绝对地址，（相对地址也可以），推荐使用pathlib构造
-# 我是这样用的
-docname = 'name.xlsx'
-wb.save(Path.joinpath(rootPath, docname))
+<p>话题通信和服务通信的握手阶段基本一致，由ROS Master做中介，所有与ROS Master进行的通信都是RPC协议，最后Server和Client的通信则是切换到TCP协议。</p>
+<h3 id="服务通信自定义srv">服务通信自定义srv</h3>
+<p>srv文件内的可用数据类型与msg文件一致，且自定义实现流程类似。</p>
+<h4 id="流程步骤-2">流程步骤：</h4>
+<ol start="0">
+<li>按照固定格式创建srv文件</li>
+<li>编辑配置文件</li>
+<li>编译生成中间文件</li>
+</ol>
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>服务通信中，数据分成两部分，请求与响应，在 srv 文件中请求和响应使用<code>---</code>分割</p>
+</blockquote>
+<pre><code># 客户端请求时发送的两个数字
+int32 num1
+int32 num2
+---
+# 服务器响应发送的数据
+int32 sum
+</code></pre>
+<p>自定义srv文件中数据类型的顺序是固定的，上面是客户端请求的数据，下面是服务器响应的数据，中间用三个横杠“-”分割</p>
+<h4 id="编辑配置文件">编辑配置文件：</h4>
+<p><strong>package.xml</strong>中添加编译依赖与执行依赖</p>
+<pre><code class="language-xml">  &lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+  &lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+  &lt;!-- 
+  exce_depend 以前对应的是 run_depend 现在非法
+  --&gt;
+</code></pre>
+<p><strong>CMakeLists.txt</strong>编辑 srv 相关配置</p>
+<pre><code class="language-cmake">find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+)
+
+# 需要加入 message_generation,必须有 std_msgs
+add_service_files(
+  FILES
+  AddInts.srv
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+</code></pre>
+<h3 id="代码实现注意">代码实现注意：</h3>
+<ol start="0">
+<li>服务端的回调函数中要有对客户端的数据检测</li>
+</ol>
+<pre><code class="language-cpp">//逻辑处理
+if (num1 &lt; 0 || num2 &lt; 0)
+{
+    ROS_ERROR(&quot;提交的数据异常:数据不可以为负数&quot;);
+    return false;
+}
+</code></pre>
+<ol>
+<li>客户端中要有对系统参数的安全检测</li>
+</ol>
+<pre><code class="language-cpp">// 调用时动态传值,如果通过 launch 的 args 传参，需要传递的参数个数 +3
+if (argc != 3)
+// if (argc != 5)//launch 传参(0-文件路径 1传入的参数 2传入的参数 3节点名称 4日志路径)
+{
+    ROS_ERROR(&quot;请提交两个整数&quot;);
+    return 1;
+}
+</code></pre>
+<ol start="2">
+<li>客户端可以先于服务端启动</li>
+</ol>
+<pre><code class="language-cpp">ros::service::waitForService(&quot;sum&quot;);
 </code></pre>
 
                                 </div>
@@ -196,9 +230,9 @@ wb.save(Path.joinpath(rootPath, docname))
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://horizain.github.io/post/bbkKceax1/">
+                            <a href="https://horizain.github.io/post/jaTAsGEvp/">
                                 <h3 class="post-title">
-                                    Python笔记本——shutil文件操作
+                                    第二节补充笔记：编码过程中库函数简介
                                 </h3>
                             </a>
                         </div>
@@ -219,14 +253,17 @@ wb.save(Path.joinpath(rootPath, docname))
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95">食用方法</a><br>
-*
+<li>
 <ul>
-<li><a href="#%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97">导入模块</a></li>
-<li><a href="#%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6">打开文件</a></li>
-<li><a href="#%E8%AF%BB%E5%86%99%E5%8D%95%E5%85%83%E6%A0%BC">读写单元格</a></li>
-<li><a href="#%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC%E5%B9%B6%E5%B1%85%E4%B8%AD">合并单元格并居中</a></li>
-<li><a href="#%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6">保存文件</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B">服务通信理论模型：</a></li>
+<li><a href="#%E6%B5%81%E7%A8%8B%E6%AD%A5%E9%AA%A4">流程步骤：</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1%E8%87%AA%E5%AE%9A%E4%B9%89srv">服务通信自定义srv</a>
+<ul>
+<li><a href="#%E6%B5%81%E7%A8%8B%E6%AD%A5%E9%AA%A4-2">流程步骤：</a></li>
+<li><a href="#%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">编辑配置文件：</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%B3%A8%E6%84%8F">代码实现注意：</a></li>
 </ul>
 </li>
 </ul>
