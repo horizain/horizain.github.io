@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    《ROS学习笔记》——第一节：ROS的安装与调试 | Horizain
+    第四节补充笔记：本章库函数介绍 | Horizain
 </title>
 <link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1630140866062">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,10 +106,10 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            《ROS学习笔记》——第一节：ROS的安装与调试
+                            第四节补充笔记：本章库函数介绍
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2021-08-21</time>
+                            <time class="post-time">2021-08-28</time>
                             
                                 <a href="https://horizain.github.io/tag/ROS/" class="post-tag i-tag
                             i-tag-warning">
@@ -119,33 +119,65 @@
                         </div>
                         
                                 <div class="post-content">
-                                    <blockquote>
-<p>我学习的文字文档和视频教程见下面两个链接，我个人认为这个教程写的还是很棒的。我写这个笔记作为我个人的学习与复习之用。</p>
-</blockquote>
-<p>文字教程：<a href="http://www.autolabor.com.cn/book/ROSTutorials/">Introduction · GitBook (autolabor.com.cn)</a></p>
-<p>视频教程：<a href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ?p=1">【奥特学园】ROS机器人入门课程《ROS理论与实践》零基础教程_哔哩哔哩_bilibili</a></p>
+                                    <h3 id="nodehandle-部分">NodeHandle 部分</h3>
+<ol start="0">
+<li><code>int res1 = nh.param(&quot;nh_int&quot;, 100);</code></li>
+</ol>
+<p>参数：参数名称、默认参数值</p>
+<p>功能：从服务器从返回参数值，如果参数名称不可获取，则返回默认参数值</p>
 <!-- more -->
-<h3 id="一-安装ros的实操记录">一、安装ROS的实操记录</h3>
-<p>ROS的系统版本是和Ubuntu系统版本高度统一的，这里我跟从教程，使用Ubuntu20.04，安装的ROS版本为noetic。</p>
-<p><strong>1、首先设置安装源，亲测国内清华大学的源可以用</strong></p>
-<p><code>sudo sh -c '. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/</code>lsb_release -cs<code>main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list'</code></p>
-<p><strong>2、设置Key</strong></p>
-<p><code>sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654</code></p>
-<p><strong>3、安装ros</strong></p>
-<p>添加完ros安装源和key之后，首先需要更新一下apt</p>
-<p><code>sudo apt update</code></p>
-<p>然后键入</p>
-<p><code>sudo apt install ros-noetic-desktop-full</code></p>
-<h3 id="二-配置环境变量">二、配置环境变量</h3>
-<p><code>echo &quot;source /opt/ros/noetic/setup.bash&quot; &gt;&gt; ~/.bashrc</code></p>
-<h3 id="三-卸载方法">三、卸载方法</h3>
-<p><code>sudo apt remove ros-noetic-*</code></p>
-<h3 id="四-测试ros">四、测试ROS</h3>
-<p>打开三个命令行，然后按顺序分别键入：</p>
-<p>1、<code>roscore</code></p>
-<p>2、<code>rosrun turtlesim turtlesim_node</code></p>
-<p>3、<code>rosrun turtlesim turtle_teleop_key</code></p>
-<p><strong>注意: 在 ROS 版本 noetic 中无需构建软件包的依赖关系，没有<code>rosdep</code>的相关安装与配置。</strong></p>
+<ol>
+<li><code>nh.setParam(&quot;nh_int&quot;, 10);</code></li>
+</ol>
+<p>参数：参数名称、设定参数值</p>
+<p>功能：向参数服务器设置一个值，值的数据类型由第二个参数的数据类型自动重载</p>
+<ol start="2">
+<li><code>int res1 = nh.param(&quot;nh_int&quot;, 100);</code></li>
+</ol>
+<p>参数：参数名称、默认返回值</p>
+<p>功能：向服务器查询参数是否存在，存在返回真实参数值，不存在返回函数默认值</p>
+<ol start="3">
+<li><code>nh.getParam(&quot;nh_int&quot;, nh_int_value);</code></li>
+</ol>
+<p>参数：参数名称、保存参数值的变量</p>
+<p>功能：存在返回true，且赋值给变量，不存在返回false，且不赋值</p>
+<ol start="4">
+<li><code>nh.getParamCached(&quot;nh_int&quot;, nh_int_value);</code></li>
+</ol>
+<p>参数：同上</p>
+<p>功能：同上，函数中有<strong>cached</strong>字样，提高变量获取效率</p>
+<ol start="5">
+<li><code>nh.getParamNames(std::vector&lt;std::string&gt;);</code></li>
+</ol>
+<p>参数：vector变量</p>
+<p>功能：获取所有的键，并存储在参数vector中</p>
+<pre><code class="language-cpp">// getParamNames()
+std::vector&lt;std::string&gt; param_names1;
+nh.getParamNames(param_names1);
+for (auto &amp;&amp;name :param_names1)
+{
+ROS_INFO(&quot;名称解析 name = %s&quot;, name.c_str());
+}
+</code></pre>
+<ol start="6">
+<li><code>nh.searchParam(&quot;nh_int&quot;, key);</code></li>
+</ol>
+<p>参数：参数名称、保存搜索结果的变量</p>
+<p>功能：搜索键，将搜索结果保存到变量中</p>
+<ol start="7">
+<li><code>ROS_INFO(&quot;存在 nh_int 吗？ %d&quot;, nh.hasParam(&quot;nh_int&quot;));</code></li>
+</ol>
+<p>参数：参数名称</p>
+<p>功能：是否包含某个键，存在返回 true，否则返回 false</p>
+<h3 id="rosparam部分"><code>ros::param</code>部分</h3>
+<p>与 NodeHandle 类似</p>
+<p><code>int res3 = ros::param::param(&quot;param_int&quot;, 20);</code></p>
+<p><code>ros::param::set(&quot;param_int&quot;, 20);</code></p>
+<p><code>ros::param::get(&quot;param_int&quot;, param_int_value);</code></p>
+<p><code>ros::param::getCached(&quot;param_int&quot;, param_int_value);</code></p>
+<p><code>ros::param::getParamNames(param_names2);</code></p>
+<p><code>ROS_INFO(&quot;存在 param_int 吗？ %d&quot;, ros::param::has(&quot;param_int&quot;));</code></p>
+<p><code>ros::param::search(&quot;param_int&quot;, key);</code></p>
 
                                 </div>
                     </article>
@@ -153,9 +185,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://horizain.github.io/post/G0Z6roMER/">
+                            <a href="https://horizain.github.io/post/jM6XKLdCX/">
                                 <h3 class="post-title">
-                                    Python笔记本——获取文件大小
+                                    《ROS学习笔记》——第四节：参数服务器的概念和应用
                                 </h3>
                             </a>
                         </div>
@@ -178,10 +210,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#%E4%B8%80-%E5%AE%89%E8%A3%85ros%E7%9A%84%E5%AE%9E%E6%93%8D%E8%AE%B0%E5%BD%95">一、安装ROS的实操记录</a></li>
-<li><a href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">二、配置环境变量</a></li>
-<li><a href="#%E4%B8%89-%E5%8D%B8%E8%BD%BD%E6%96%B9%E6%B3%95">三、卸载方法</a></li>
-<li><a href="#%E5%9B%9B-%E6%B5%8B%E8%AF%95ros">四、测试ROS</a></li>
+<li><a href="#nodehandle-%E9%83%A8%E5%88%86">NodeHandle 部分</a></li>
+<li><a href="#rosparam%E9%83%A8%E5%88%86"><code>ros::param</code>部分</a></li>
 </ul>
 </li>
 </ul>

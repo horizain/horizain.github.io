@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://horizain.github.io</id>
     <title>Horizain</title>
-    <updated>2021-08-23T10:11:52.770Z</updated>
+    <updated>2021-08-28T08:56:16.248Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://horizain.github.io"/>
     <link rel="self" href="https://horizain.github.io/atom.xml"/>
@@ -10,6 +10,131 @@
     <logo>https://horizain.github.io/images/avatar.png</logo>
     <icon>https://horizain.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Horizain</rights>
+    <entry>
+        <title type="html"><![CDATA[第四节补充笔记：本章库函数介绍]]></title>
+        <id>https://horizain.github.io/post/oIlWXRWzH/</id>
+        <link href="https://horizain.github.io/post/oIlWXRWzH/">
+        </link>
+        <updated>2021-08-28T08:53:47.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="nodehandle-部分">NodeHandle 部分</h3>
+<ol start="0">
+<li><code>int res1 = nh.param(&quot;nh_int&quot;, 100);</code></li>
+</ol>
+<p>参数：参数名称、默认参数值</p>
+<p>功能：从服务器从返回参数值，如果参数名称不可获取，则返回默认参数值</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="nodehandle-部分">NodeHandle 部分</h3>
+<ol start="0">
+<li><code>int res1 = nh.param(&quot;nh_int&quot;, 100);</code></li>
+</ol>
+<p>参数：参数名称、默认参数值</p>
+<p>功能：从服务器从返回参数值，如果参数名称不可获取，则返回默认参数值</p>
+<!-- more -->
+<ol>
+<li><code>nh.setParam(&quot;nh_int&quot;, 10);</code></li>
+</ol>
+<p>参数：参数名称、设定参数值</p>
+<p>功能：向参数服务器设置一个值，值的数据类型由第二个参数的数据类型自动重载</p>
+<ol start="2">
+<li><code>int res1 = nh.param(&quot;nh_int&quot;, 100);</code></li>
+</ol>
+<p>参数：参数名称、默认返回值</p>
+<p>功能：向服务器查询参数是否存在，存在返回真实参数值，不存在返回函数默认值</p>
+<ol start="3">
+<li><code>nh.getParam(&quot;nh_int&quot;, nh_int_value);</code></li>
+</ol>
+<p>参数：参数名称、保存参数值的变量</p>
+<p>功能：存在返回true，且赋值给变量，不存在返回false，且不赋值</p>
+<ol start="4">
+<li><code>nh.getParamCached(&quot;nh_int&quot;, nh_int_value);</code></li>
+</ol>
+<p>参数：同上</p>
+<p>功能：同上，函数中有<strong>cached</strong>字样，提高变量获取效率</p>
+<ol start="5">
+<li><code>nh.getParamNames(std::vector&lt;std::string&gt;);</code></li>
+</ol>
+<p>参数：vector变量</p>
+<p>功能：获取所有的键，并存储在参数vector中</p>
+<pre><code class="language-cpp">// getParamNames()
+std::vector&lt;std::string&gt; param_names1;
+nh.getParamNames(param_names1);
+for (auto &amp;&amp;name :param_names1)
+{
+ROS_INFO(&quot;名称解析 name = %s&quot;, name.c_str());
+}
+</code></pre>
+<ol start="6">
+<li><code>nh.searchParam(&quot;nh_int&quot;, key);</code></li>
+</ol>
+<p>参数：参数名称、保存搜索结果的变量</p>
+<p>功能：搜索键，将搜索结果保存到变量中</p>
+<ol start="7">
+<li><code>ROS_INFO(&quot;存在 nh_int 吗？ %d&quot;, nh.hasParam(&quot;nh_int&quot;));</code></li>
+</ol>
+<p>参数：参数名称</p>
+<p>功能：是否包含某个键，存在返回 true，否则返回 false</p>
+<h3 id="rosparam部分"><code>ros::param</code>部分</h3>
+<p>与 NodeHandle 类似</p>
+<p><code>int res3 = ros::param::param(&quot;param_int&quot;, 20);</code></p>
+<p><code>ros::param::set(&quot;param_int&quot;, 20);</code></p>
+<p><code>ros::param::get(&quot;param_int&quot;, param_int_value);</code></p>
+<p><code>ros::param::getCached(&quot;param_int&quot;, param_int_value);</code></p>
+<p><code>ros::param::getParamNames(param_names2);</code></p>
+<p><code>ROS_INFO(&quot;存在 param_int 吗？ %d&quot;, ros::param::has(&quot;param_int&quot;));</code></p>
+<p><code>ros::param::search(&quot;param_int&quot;, key);</code></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[《ROS学习笔记》——第四节：参数服务器的概念和应用]]></title>
+        <id>https://horizain.github.io/post/jM6XKLdCX/</id>
+        <link href="https://horizain.github.io/post/jM6XKLdCX/">
+        </link>
+        <updated>2021-08-28T08:52:57.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="参数服务器概念">参数服务器概念</h3>
+<p>参数服务器（Parameter)是一种以共享的方式实现不同节点之间数据交互的通信模式，相当于是独立于所有节点的一个公共容器，所有的节点都可以上传数据，也都可以调用数据。</p>
+<p>一般适用于存在数据共享的应用场景，存储一些多节点共享的数据，类似于全局变量。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="参数服务器概念">参数服务器概念</h3>
+<p>参数服务器（Parameter)是一种以共享的方式实现不同节点之间数据交互的通信模式，相当于是独立于所有节点的一个公共容器，所有的节点都可以上传数据，也都可以调用数据。</p>
+<p>一般适用于存在数据共享的应用场景，存储一些多节点共享的数据，类似于全局变量。</p>
+<!-- more -->
+<h3 id="理论模型">理论模型</h3>
+<figure data-type="image" tabindex="1"><img src="%E3%80%8AROS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E8%8A%82%EF%BC%9A%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E5%BA%94%E7%94%A8.assets/03ROS%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B603_%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8.jpg" alt="img" loading="lazy"></figure>
+<p>ROS Master作为公共容器保存参数，Talker向容器中设置参数，Listener可以获取参数。</p>
+<h3 id="流程">流程</h3>
+<ol start="0">
+<li>Talker设置参数</li>
+<li>Listener获取参数</li>
+<li>ROS Master向Listener发送参数</li>
+</ol>
+<p>与前面的话题通信、服务通信中介绍的类似，所有与ROS Master进行的通讯都是使用RPC协议</p>
+<h3 id="可用的数据类型">可用的数据类型</h3>
+<p>参数可使用数据类型:</p>
+<ul>
+<li>32-bit integers</li>
+<li>booleans</li>
+<li>strings</li>
+<li>doubles</li>
+<li>iso8601 dates</li>
+<li>lists</li>
+<li>base64-encoded binary data</li>
+<li>字典</li>
+</ul>
+<h3 id="注意">注意</h3>
+<blockquote>
+<p>参数服务器不是为高性能而设计的，因此最好用于存储静态的非二进制的简单数据</p>
+</blockquote>
+<h3 id="代码操作">代码操作</h3>
+<p>在C++中实现参数服务器的增删改查，可以通过两套API实现：<code>ros::NodeHandle</code>和<code>ros::param</code></p>
+<p><strong>数据的基本操作需求：增删改查</strong></p>
+<p>增和改是使用同一个API函数：</p>
+<ul>
+<li><code>ros::NodeHandle::setParam(&quot;键&quot;,值)</code></li>
+<li><code>ros::param::set(&quot;键&quot;,值)</code></li>
+</ul>
+<p>修改时使用同一个键不同的值覆盖设置</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第三节补充笔记：本章库函数简介]]></title>
         <id>https://horizain.github.io/post/Tn_i38FpZ/</id>
@@ -624,177 +749,6 @@ ws.save(abspath)
 docname = 'name.xlsx'
 wb.save(Path.joinpath(rootPath, docname))
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python笔记本——shutil文件操作]]></title>
-        <id>https://horizain.github.io/post/bbkKceax1/</id>
-        <link href="https://horizain.github.io/post/bbkKceax1/">
-        </link>
-        <updated>2021-05-07T09:11:03.000Z</updated>
-        <summary type="html"><![CDATA[<p>我主要是使用这个模块复制文件和文件夹</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>我主要是使用这个模块复制文件和文件夹</p>
-<!-- more -->
-<h2 id="用法"><strong>用法</strong></h2>
-<pre><code># 判断文件/文件夹并复制
-for binPath in seconddir.iterdir():
-    if binPath.is_file():
-        srcPath = binPath.resolve()
-        # 复制文件
-        shutil.copy(srcPath, inputPath)
-    else:
-        # 复制文件夹
-        shutil.copytree(binPath.resolve(), Path.joinpath(inputPath,binPath.name), dirs_exist_ok=True)
-
-# dirs_exist_os=True：忽略已有文件夹
-# Path.joinpath(inputPath,binPath.name)：合成文件夹的目的地址
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python笔记本——pathlib使用简述]]></title>
-        <id>https://horizain.github.io/post/DWvXQWaZE/</id>
-        <link href="https://horizain.github.io/post/DWvXQWaZE/">
-        </link>
-        <updated>2021-05-07T09:09:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>pathlib 是一个面向对象的文件系统路径模块。下面是我是用较多的函数和使用方法：</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>pathlib 是一个面向对象的文件系统路径模块。下面是我是用较多的函数和使用方法：</p>
-<!-- more -->
-<h3 id="快速食用方法">快速食用方法</h3>
-<p>导入模块</p>
-<p><code>from pathlib import Path</code></p>
-<p>新建一个Path对象</p>
-<p><code>dstbinPath = Path(inputPath)</code></p>
-<p>获取文件所在的<strong>相对路径</strong>的<strong>上级路径</strong></p>
-<p><code>rootPath = Path.cwd().parent</code></p>
-<p>parent属性可以<strong>链式调用</strong>，比如</p>
-<p><code>Path.cwd().parent.parent.parent.parent</code></p>
-<p>Path对象的parents属性可以拿到各级目录列表(索引值越大越接近root)</p>
-<p>拼接路径</p>
-<p><code>logPath = Path.joinpath(rootPath, 'errorlog')</code></p>
-<p><strong>遍历</strong>文件夹文件</p>
-<pre><code class="language-python">for sub in logPath.iterdir():
-    if sub.is_file():
-        # 获取文件的绝对路径
-        srcPath = sub.resolve()
-</code></pre>
-<p>判断文件后缀扩展名</p>
-<p><code>if logfile.suffix == '.json':</code></p>
-<p>删除文件</p>
-<p><code>file.unlink()</code></p>
-<h2 id="对应的-os-模块的工具">对应的 <a href="https://docs.python.org/zh-cn/3/library/os.html#module-os"><code>os</code></a> 模块的工具</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">os 和 os.path</th>
-<th style="text-align:left">pathlib</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.abspath"><code>os.path.abspath()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.resolve"><code>Path.resolve()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.chmod"><code>os.chmod()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.chmod"><code>Path.chmod()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.mkdir"><code>os.mkdir()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.mkdir"><code>Path.mkdir()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.makedirs"><code>os.makedirs()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.mkdir"><code>Path.mkdir()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.rename"><code>os.rename()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.rename"><code>Path.rename()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.replace"><code>os.replace()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.replace"><code>Path.replace()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.rmdir"><code>os.rmdir()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.rmdir"><code>Path.rmdir()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.remove"><code>os.remove()</code></a>, <a href="https://docs.python.org/zh-cn/3/library/os.html#os.unlink"><code>os.unlink()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.unlink"><code>Path.unlink()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.getcwd"><code>os.getcwd()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.cwd"><code>Path.cwd()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.exists"><code>os.path.exists()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.exists"><code>Path.exists()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.expanduser"><code>os.path.expanduser()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.expanduser"><code>Path.expanduser()</code></a> 和 <a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.home"><code>Path.home()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.listdir"><code>os.listdir()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.iterdir"><code>Path.iterdir()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.isdir"><code>os.path.isdir()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.is_dir"><code>Path.is_dir()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.isfile"><code>os.path.isfile()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.is_file"><code>Path.is_file()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.islink"><code>os.path.islink()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.is_symlink"><code>Path.is_symlink()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.link"><code>os.link()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.link_to"><code>Path.link_to()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.symlink"><code>os.symlink()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.symlink_to"><code>Path.symlink_to()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.readlink"><code>os.readlink()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.readlink"><code>Path.readlink()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.html#os.stat"><code>os.stat()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.stat"><code>Path.stat()</code></a>, <a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.owner"><code>Path.owner()</code></a>, <a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.group"><code>Path.group()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.isabs"><code>os.path.isabs()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.PurePath.is_absolute"><code>PurePath.is_absolute()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.join"><code>os.path.join()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.PurePath.joinpath"><code>PurePath.joinpath()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.basename"><code>os.path.basename()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.PurePath.name"><code>PurePath.name</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.dirname"><code>os.path.dirname()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.PurePath.parent"><code>PurePath.parent</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.samefile"><code>os.path.samefile()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.Path.samefile"><code>Path.samefile()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/os.path.html#os.path.splitext"><code>os.path.splitext()</code></a></td>
-<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/pathlib.html#pathlib.PurePath.suffix"><code>PurePath.suffix</code></a></td>
-</tr>
-</tbody>
-</table>
 ]]></content>
     </entry>
 </feed>
