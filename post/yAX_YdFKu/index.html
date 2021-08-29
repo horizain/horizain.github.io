@@ -1,0 +1,417 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    《ROS学习笔记》——第五节：ROS中一些常用命令 | Horizain
+</title>
+<link rel="shortcut icon" href="https://horizain.github.io/favicon.ico?v=1630231316913">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://horizain.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://horizain.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
+
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://horizain.github.io">
+                <img class="avatar" src="https://horizain.github.io/images/avatar.png?v=1630231316913" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Horizain
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            《ROS学习笔记》——第五节：ROS中一些常用命令
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2021-08-29</time>
+                            
+                                <a href="https://horizain.github.io/tag/ROS/" class="post-tag i-tag
+                            i-tag-">
+                            #ROS学习笔记
+                        </a>
+                                
+                        </div>
+                        
+                                <div class="post-content">
+                                    <h3 id="常用的命令如下">常用的命令如下：</h3>
+<ul>
+<li>rosnode：操作节点</li>
+<li>rostopic：操作话题</li>
+<li>rosservice：操作服务</li>
+<li>rosmsg：操作msg消息</li>
+<li>rossrv：操作srv消息</li>
+<li>rosparam：操作参数</li>
+</ul>
+<!-- more -->
+<p>文件操作命令是静态的，操作的是磁盘上的文件，上述命令是动态的，在ROS程序启动后，可以动态的获取运行中的节点或参数的相关信息</p>
+<h3 id="rosnode">rosnode</h3>
+<p>用于获取节点信息的命令</p>
+<pre><code>rosnode ping   	 测试到节点的连接状态
+rosnode list   	 列出活动节点
+rosnode info     打印节点信息
+rosnode machine  列出指定设备上节点
+rosnode kill     杀死某个节点
+rosnode cleanup  清除不可连接的节点
+</code></pre>
+<p>比如启动乌龟节点，然后 ctrl+c 关闭，该节点并没有彻底清除，可以使用 cleanup 清除节点</p>
+<h3 id="rostopic">rostopic</h3>
+<p>用于显示有关ROS主题的调试信息，包括发布者、订阅者，发布频率和ROS消息。它还包括一个是个实验性Python库，用于动态获取有关主题的信息并与之交互。</p>
+<pre><code>rostopic bw     显示主题使用的带宽
+rostopic delay  显示带有 header 的主题延迟
+rostopic echo   打印消息到屏幕
+rostopic find   根据类型查找主题
+rostopic hz     显示主题的发布频率
+rostopic info   显示主题相关信息
+rostopic list   显示所有活动状态下的主题
+rostopic pub    将数据发布到主题
+rostopic type   打印主题类型
+</code></pre>
+<ul>
+<li><strong>rostopic list (-v)</strong></li>
+</ul>
+<p>获取话题详情（比如列出：发布者和订阅者个数...）</p>
+<p>直接调用即可，控制台将打印当前运行状态下的主题名称</p>
+<ul>
+<li><strong>rostopic pub</strong></li>
+</ul>
+<p>调用命令向订阅者发布消息</p>
+<p>例如：</p>
+<figure data-type="image" tabindex="1"><img src="https://horizain.github.io/post-images/1630231162996.png" alt="" loading="lazy"></figure>
+<p>订阅方：</p>
+<figure data-type="image" tabindex="2"><img src="https://horizain.github.io/post-images/1630231185156.png" alt="" loading="lazy"></figure>
+<p>如果加上在 <code>rostopic pub</code> 后面加上 <code>-r 10</code> 选项，效果为以 10Hz 的频率循环发送信息给订阅方</p>
+<ul>
+<li><strong>rostopic echo</strong></li>
+</ul>
+<p>获取指定话题当前发布的消息详情</p>
+<ul>
+<li><strong>rostopic info</strong></li>
+</ul>
+<p>获取当前话题的相关信息：</p>
+<pre><code>	1. 消息类型
+	2. 发布者信息
+	3. 订阅者信息
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://horizain.github.io/post-images/1630231201570.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rostopic type /话题名称</strong></li>
+</ul>
+<p>列出话题的消息类型</p>
+<figure data-type="image" tabindex="4"><img src="https://horizain.github.io/post-images/1630231208439.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rostopic find 消息类型</strong></li>
+</ul>
+<p>根据消息类型查找话题</p>
+<ul>
+<li><strong>rostopic hz /话题名称</strong></li>
+</ul>
+<p>列出消息发布频率</p>
+<figure data-type="image" tabindex="5"><img src="https://horizain.github.io/post-images/1630231220481.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rostopic bw /话题名称</strong></li>
+</ul>
+<p>列出消息发布带宽</p>
+<h3 id="rosmsg">rosmsg</h3>
+<p>用于显示有关ROS<strong>消息类型</strong>的信息的命令行工具</p>
+<pre><code>rosmsg show         显示消息描述
+rosmsg info         显示消息信息
+rosmsg list    	    列出所有消息
+rosmsg md5    		显示 md5 加密后的消息
+rosmsg package      显示某个功能包下的所有消息
+rosmsg packages     列出包含消息的功能包
+</code></pre>
+<ul>
+<li><strong>rosmsg show 消息名称/消息文件名</strong></li>
+</ul>
+<figure data-type="image" tabindex="6"><img src="https://horizain.github.io/post-images/1630231228023.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rosmsg info</strong></li>
+</ul>
+<p>作用与 <code>rosmsg show</code> 一样</p>
+<p>...</p>
+<h3 id="rosservice">rosservice</h3>
+<p>用于列出和查询 Services</p>
+<p>调用时需要注意相关工作空间已配置 path</p>
+<pre><code>rosservice args    打印服务参数
+rosservice call    使用提供的参数调用服务
+rosservice find    按照服务类型查找服务
+rosservice info    打印有关服务的信息
+rosservice list    列出所有活动的服务
+rosservice type    打印服务类型
+rosservice uri     打印服务的 ROSRPC uri
+</code></pre>
+<ul>
+<li><strong>rosservice call sum &quot;num1: 3 num2: 2&quot;</strong></li>
+</ul>
+<figure data-type="image" tabindex="7"><img src="https://horizain.github.io/post-images/1630231236175.png" alt="" loading="lazy"></figure>
+<p>服务器：</p>
+<figure data-type="image" tabindex="8"><img src="https://horizain.github.io/post-images/1630231242076.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rosservice info sum</strong></li>
+</ul>
+<p>获取服务话题详情，包括所属节点、参数、rosrpc地址等</p>
+<figure data-type="image" tabindex="9"><img src="https://horizain.github.io/post-images/1630231248997.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rosservice type | rosservice uri</strong></li>
+</ul>
+<figure data-type="image" tabindex="10"><img src="https://horizain.github.io/post-images/1630231255141.png" alt="" loading="lazy"></figure>
+<h3 id="rossrv">rossrv</h3>
+<p>用于显示有关ROS服务类型的信息，与 rosmsg 使用语法高度雷同</p>
+<pre><code>rossrv show         显示服务消息详情
+rossrv info         显示服务消息相关信息
+rossrv list         列出所有服务信息
+rossrv md5    		显示 md5 加密后的服务消息
+rossrv package      显示某个包下所有服务消息
+rossrv packages     显示包含服务消息的所有包
+</code></pre>
+<ul>
+<li><strong>rossrv show</strong></li>
+</ul>
+<p>显示消息描述：</p>
+<figure data-type="image" tabindex="11"><img src="https://horizain.github.io/post-images/1630231265155.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rossrv package 包名</strong></li>
+</ul>
+<p>列出某个包下的所有srv文件</p>
+<figure data-type="image" tabindex="12"><img src="https://horizain.github.io/post-images/1630231270594.png" alt="" loading="lazy"></figure>
+<h3 id="rosparam">rosparam</h3>
+<p>用于使用YAML编码文件在参数服务器上获取和设置ROS参数</p>
+<pre><code>rosparam set       设置参数
+rosparam get       获取参数
+rosparam load      从外部文件加载参数
+rosparam dump      将参数写出到外部文件
+rosparam delete    删除参数
+rosparam list      列出所有参数
+</code></pre>
+<ul>
+<li>
+<p><strong>rosparam set name horizain</strong></p>
+</li>
+<li>
+<p><strong>rosparam list</strong></p>
+</li>
+<li>
+<p><strong>rosparam get name</strong></p>
+</li>
+</ul>
+<figure data-type="image" tabindex="13"><img src="https://horizain.github.io/post-images/1630231277421.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>rosparam delete</strong></li>
+</ul>
+<p>删除参数</p>
+<ul>
+<li><strong>rosparam load xxx.yaml</strong></li>
+</ul>
+<p>从外部文件加载参数，要先准备yaml文件</p>
+<ul>
+<li><strong>rosparam dump xxx.yaml</strong></li>
+</ul>
+<p>将参数写出到外部文件</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://horizain.github.io/post/oIlWXRWzH/">
+                                <h3 class="post-title">
+                                    第四节补充笔记：本章库函数介绍
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%A6%82%E4%B8%8B">常用的命令如下：</a></li>
+<li><a href="#rosnode">rosnode</a></li>
+<li><a href="#rostopic">rostopic</a></li>
+<li><a href="#rosmsg">rosmsg</a></li>
+<li><a href="#rosservice">rosservice</a></li>
+<li><a href="#rossrv">rossrv</a></li>
+<li><a href="#rosparam">rosparam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://horizain.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: 'bf0b0234f75cd420c541',
+            clientSecret: 'ff80f324229c6327987e7a1fb2f60f203819e1f9',
+            repo: 'horizain.github.io',
+            owner: 'horizain',
+            admin: ['horizain'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
+
+                    
+                                
+</body>
+
+</html>
